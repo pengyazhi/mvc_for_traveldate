@@ -1,0 +1,1931 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TraveldateModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CityList">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryID" Type="int" />
+        </EntityType>
+        <EntityType Name="CommentList">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="CommentScore" Type="int" />
+          <Property Name="MemberID" Type="int" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="ProductID" Type="int" />
+        </EntityType>
+        <EntityType Name="CommentPhotoList">
+          <Key>
+            <PropertyRef Name="CommentPhotoListID" />
+          </Key>
+          <Property Name="CommentPhotoListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommentID" Type="int" />
+          <Property Name="Photo" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Companion">
+          <Key>
+            <PropertyRef Name="CompanionID" />
+          </Key>
+          <Property Name="CompanionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="MemberID" Type="int" />
+          <Property Name="BirthDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CompanionList">
+          <Key>
+            <PropertyRef Name="CompanionListID" />
+          </Key>
+          <Property Name="CompanionListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderDetailsID" Type="int" />
+          <Property Name="CompanionID" Type="int" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tax_ID_Number" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="URL" Type="nvarchar" MaxLength="50" />
+          <Property Name="Principal" Type="nvarchar" MaxLength="50" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="ServerDescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="Enable" Type="bit" />
+        </EntityType>
+        <EntityType Name="CountryList">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Coupon">
+          <Key>
+            <PropertyRef Name="CouponID" />
+          </Key>
+          <Property Name="CouponID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="CouponListID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CouponList">
+          <Key>
+            <PropertyRef Name="CouponListID" />
+          </Key>
+          <Property Name="CouponListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CouponName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CompanyID" Type="int" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="DueDate" Type="datetime" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'Traveldate.dbo.Employees' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmployeeLevel" Type="int" />
+          <Property Name="EmployeeAccount" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmployeePassword" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Favorite">
+          <Key>
+            <PropertyRef Name="FavoriteID" />
+          </Key>
+          <Property Name="FavoriteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" />
+        </EntityType>
+        <EntityType Name="LevelList">
+          <Key>
+            <PropertyRef Name="LevelID" />
+          </Key>
+          <Property Name="LevelID" Type="int" Nullable="false" />
+          <Property Name="Standard" Type="int" />
+          <Property Name="Level" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="LevelID" Type="int" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="Enable" Type="bit" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailsID" />
+          </Key>
+          <Property Name="OrderDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="TripID" Type="int" />
+          <Property Name="SellingPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Note" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="Datetime" Type="datetime" />
+          <Property Name="CouponListID" Type="int" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="PaymentID" Type="int" />
+          <Property Name="IsCart" Type="bit" />
+        </EntityType>
+        <EntityType Name="OrderStatusList">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PaymentList">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="int" Nullable="false" />
+          <Property Name="Payment" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="ProductCategoryID" />
+          </Key>
+          <Property Name="ProductCategoryID" Type="int" Nullable="false" />
+          <Property Name="ProductCategoryName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ProductList">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ProductTypeID" Type="int" />
+          <Property Name="ExamineStatus" Type="bit" />
+          <Property Name="PlanName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PlanDescription" Type="nvarchar(max)" />
+          <Property Name="Discontinued" Type="bit" />
+          <Property Name="Outline" Type="nvarchar(max)" />
+          <Property Name="OutlineForSearch" Type="nvarchar(max)" />
+          <Property Name="Place" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ProductPhotoList">
+          <Key>
+            <PropertyRef Name="ProductPhotoListID" />
+          </Key>
+          <Property Name="ProductPhotoListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="OnSlide" Type="bit" />
+        </EntityType>
+        <EntityType Name="ProductTagDetails">
+          <Key>
+            <PropertyRef Name="ProductTagDetailsID" />
+          </Key>
+          <Property Name="ProductTagDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductCategoryID" Type="int" />
+          <Property Name="ProductTagDetailsName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ProductTagList">
+          <Key>
+            <PropertyRef Name="ProductTagListID" />
+          </Key>
+          <Property Name="ProductTagListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="ProductTagDetailsID" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductTypeList">
+          <Key>
+            <PropertyRef Name="ProductTypeID" />
+          </Key>
+          <Property Name="ProductTypeID" Type="int" Nullable="false" />
+          <Property Name="ProductType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Trip">
+          <Key>
+            <PropertyRef Name="TripID" />
+          </Key>
+          <Property Name="TripID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MinNum" Type="int" />
+          <Property Name="MaxNum" Type="int" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DiscountExpirationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TripDetail">
+          <Key>
+            <PropertyRef Name="TripDetailID" />
+          </Key>
+          <Property Name="TripDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TripID" Type="int" />
+          <Property Name="TripDetail" Type="nvarchar(max)" />
+          <Property Name="ProductPhotoListID" Type="int" />
+          <Property Name="TripDay" Type="int" />
+        </EntityType>
+        <Association Name="FK_CityList_CountryList">
+          <End Role="CountryList" Type="Self.CountryList" Multiplicity="0..1" />
+          <End Role="CityList" Type="Self.CityList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryList">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="CityList">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentList_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+          <End Role="CommentList" Type="Self.CommentList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="CommentList">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentList_ProductList">
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="0..1" />
+          <End Role="CommentList" Type="Self.CommentList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductList">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="CommentList">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Companion_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+          <End Role="Companion" Type="Self.Companion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Companion">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanionList_Companion">
+          <End Role="Companion" Type="Self.Companion" Multiplicity="0..1" />
+          <End Role="CompanionList" Type="Self.CompanionList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companion">
+              <PropertyRef Name="CompanionID" />
+            </Principal>
+            <Dependent Role="CompanionList">
+              <PropertyRef Name="CompanionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanionList_OrderDetails">
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="0..1" />
+          <End Role="CompanionList" Type="Self.CompanionList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderDetails">
+              <PropertyRef Name="OrderDetailsID" />
+            </Principal>
+            <Dependent Role="CompanionList">
+              <PropertyRef Name="OrderDetailsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coupon_CouponList">
+          <End Role="CouponList" Type="Self.CouponList" Multiplicity="1" />
+          <End Role="Coupon" Type="Self.Coupon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CouponList">
+              <PropertyRef Name="CouponListID" />
+            </Principal>
+            <Dependent Role="Coupon">
+              <PropertyRef Name="CouponListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favorite_ProductList">
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="0..1" />
+          <End Role="Favorite" Type="Self.Favorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductList">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Favorite">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_CityList">
+          <End Role="CityList" Type="Self.CityList" Multiplicity="0..1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityList">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_LevelList">
+          <End Role="LevelList" Type="Self.LevelList" Multiplicity="0..1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LevelList">
+              <PropertyRef Name="LevelID" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="LevelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_OrderStatusList">
+          <End Role="OrderStatusList" Type="Self.OrderStatusList" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatusList">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_CouponList">
+          <End Role="CouponList" Type="Self.CouponList" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CouponList">
+              <PropertyRef Name="CouponListID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="CouponListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_PaymentList">
+          <End Role="PaymentList" Type="Self.PaymentList" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentList">
+              <PropertyRef Name="PaymentID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="PaymentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductList_CityList">
+          <End Role="CityList" Type="Self.CityList" Multiplicity="0..1" />
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityList">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="ProductList">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductList_ProductTypeList">
+          <End Role="ProductTypeList" Type="Self.ProductTypeList" Multiplicity="0..1" />
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTypeList">
+              <PropertyRef Name="ProductTypeID" />
+            </Principal>
+            <Dependent Role="ProductList">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductPhotoList_ProductList">
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="0..1" />
+          <End Role="ProductPhotoList" Type="Self.ProductPhotoList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductList">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductPhotoList">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTagDetails_ProductTag">
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="0..1" />
+          <End Role="ProductTagDetails" Type="Self.ProductTagDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="ProductCategoryID" />
+            </Principal>
+            <Dependent Role="ProductTagDetails">
+              <PropertyRef Name="ProductCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTagList_ProductList">
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="0..1" />
+          <End Role="ProductTagList" Type="Self.ProductTagList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductList">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductTagList">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTagList_ProductTagDetails">
+          <End Role="ProductTagDetails" Type="Self.ProductTagDetails" Multiplicity="0..1" />
+          <End Role="ProductTagList" Type="Self.ProductTagList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTagDetails">
+              <PropertyRef Name="ProductTagDetailsID" />
+            </Principal>
+            <Dependent Role="ProductTagList">
+              <PropertyRef Name="ProductTagDetailsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trip_ProductList">
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="1" />
+          <End Role="Trip" Type="Self.Trip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductList">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Trip">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TripDetail_ProductPhotoList">
+          <End Role="ProductPhotoList" Type="Self.ProductPhotoList" Multiplicity="0..1" />
+          <End Role="TripDetail" Type="Self.TripDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductPhotoList">
+              <PropertyRef Name="ProductPhotoListID" />
+            </Principal>
+            <Dependent Role="TripDetail">
+              <PropertyRef Name="ProductPhotoListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TripDetail_Trip">
+          <End Role="Trip" Type="Self.Trip" Multiplicity="0..1" />
+          <End Role="TripDetail" Type="Self.TripDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trip">
+              <PropertyRef Name="TripID" />
+            </Principal>
+            <Dependent Role="TripDetail">
+              <PropertyRef Name="TripID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_公司商品清單_公司資料表1">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="ProductList">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_我的收藏_會員資料表">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Favorite" Type="Self.Favorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Favorite">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_會員訂單清單_出團">
+          <End Role="Trip" Type="Self.Trip" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trip">
+              <PropertyRef Name="TripID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="TripID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_會員訂單清單_會員訂單">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_會員優惠券_會員資料表">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Coupon" Type="Self.Coupon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Coupon">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_優惠券清單_公司資料表1">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="CouponList" Type="Self.CouponList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="CouponList">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TraveldateModelStoreContainer">
+          <EntitySet Name="CityList" EntityType="Self.CityList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentList" EntityType="Self.CommentList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentPhotoList" EntityType="Self.CommentPhotoList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Companion" EntityType="Self.Companion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanionList" EntityType="Self.CompanionList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CountryList" EntityType="Self.CountryList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CouponList" EntityType="Self.CouponList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Favorite" EntityType="Self.Favorite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LevelList" EntityType="Self.LevelList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderStatusList" EntityType="Self.OrderStatusList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentList" EntityType="Self.PaymentList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductList" EntityType="Self.ProductList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductPhotoList" EntityType="Self.ProductPhotoList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductTagDetails" EntityType="Self.ProductTagDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductTagList" EntityType="Self.ProductTagList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductTypeList" EntityType="Self.ProductTypeList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trip" EntityType="Self.Trip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TripDetail" EntityType="Self.TripDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Employees].[EmployeeID] AS [EmployeeID], 
+    [Employees].[LastName] AS [LastName], 
+    [Employees].[FirstName] AS [FirstName], 
+    [Employees].[EmployeeLevel] AS [EmployeeLevel], 
+    [Employees].[EmployeeAccount] AS [EmployeeAccount], 
+    [Employees].[EmployeePassword] AS [EmployeePassword]
+    FROM [dbo].[Employees] AS [Employees]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_CityList_CountryList" Association="Self.FK_CityList_CountryList">
+            <End Role="CountryList" EntitySet="CountryList" />
+            <End Role="CityList" EntitySet="CityList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentList_Member" Association="Self.FK_CommentList_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="CommentList" EntitySet="CommentList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentList_ProductList" Association="Self.FK_CommentList_ProductList">
+            <End Role="ProductList" EntitySet="ProductList" />
+            <End Role="CommentList" EntitySet="CommentList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Companion_Member" Association="Self.FK_Companion_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Companion" EntitySet="Companion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanionList_Companion" Association="Self.FK_CompanionList_Companion">
+            <End Role="Companion" EntitySet="Companion" />
+            <End Role="CompanionList" EntitySet="CompanionList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanionList_OrderDetails" Association="Self.FK_CompanionList_OrderDetails">
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+            <End Role="CompanionList" EntitySet="CompanionList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coupon_CouponList" Association="Self.FK_Coupon_CouponList">
+            <End Role="CouponList" EntitySet="CouponList" />
+            <End Role="Coupon" EntitySet="Coupon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favorite_ProductList" Association="Self.FK_Favorite_ProductList">
+            <End Role="ProductList" EntitySet="ProductList" />
+            <End Role="Favorite" EntitySet="Favorite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_CityList" Association="Self.FK_Member_CityList">
+            <End Role="CityList" EntitySet="CityList" />
+            <End Role="Member" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_LevelList" Association="Self.FK_Member_LevelList">
+            <End Role="LevelList" EntitySet="LevelList" />
+            <End Role="Member" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_OrderStatusList" Association="Self.FK_OrderDetails_OrderStatusList">
+            <End Role="OrderStatusList" EntitySet="OrderStatusList" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_CouponList" Association="Self.FK_Orders_CouponList">
+            <End Role="CouponList" EntitySet="CouponList" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Member" Association="Self.FK_Orders_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_PaymentList" Association="Self.FK_Orders_PaymentList">
+            <End Role="PaymentList" EntitySet="PaymentList" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductList_CityList" Association="Self.FK_ProductList_CityList">
+            <End Role="CityList" EntitySet="CityList" />
+            <End Role="ProductList" EntitySet="ProductList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductList_ProductTypeList" Association="Self.FK_ProductList_ProductTypeList">
+            <End Role="ProductTypeList" EntitySet="ProductTypeList" />
+            <End Role="ProductList" EntitySet="ProductList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductPhotoList_ProductList" Association="Self.FK_ProductPhotoList_ProductList">
+            <End Role="ProductList" EntitySet="ProductList" />
+            <End Role="ProductPhotoList" EntitySet="ProductPhotoList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTagDetails_ProductTag" Association="Self.FK_ProductTagDetails_ProductTag">
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+            <End Role="ProductTagDetails" EntitySet="ProductTagDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTagList_ProductList" Association="Self.FK_ProductTagList_ProductList">
+            <End Role="ProductList" EntitySet="ProductList" />
+            <End Role="ProductTagList" EntitySet="ProductTagList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTagList_ProductTagDetails" Association="Self.FK_ProductTagList_ProductTagDetails">
+            <End Role="ProductTagDetails" EntitySet="ProductTagDetails" />
+            <End Role="ProductTagList" EntitySet="ProductTagList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trip_ProductList" Association="Self.FK_Trip_ProductList">
+            <End Role="ProductList" EntitySet="ProductList" />
+            <End Role="Trip" EntitySet="Trip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TripDetail_ProductPhotoList" Association="Self.FK_TripDetail_ProductPhotoList">
+            <End Role="ProductPhotoList" EntitySet="ProductPhotoList" />
+            <End Role="TripDetail" EntitySet="TripDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TripDetail_Trip" Association="Self.FK_TripDetail_Trip">
+            <End Role="Trip" EntitySet="Trip" />
+            <End Role="TripDetail" EntitySet="TripDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_公司商品清單_公司資料表1" Association="Self.FK_公司商品清單_公司資料表1">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="ProductList" EntitySet="ProductList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_我的收藏_會員資料表" Association="Self.FK_我的收藏_會員資料表">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Favorite" EntitySet="Favorite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_會員訂單清單_出團" Association="Self.FK_會員訂單清單_出團">
+            <End Role="Trip" EntitySet="Trip" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_會員訂單清單_會員訂單" Association="Self.FK_會員訂單清單_會員訂單">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_會員優惠券_會員資料表" Association="Self.FK_會員優惠券_會員資料表">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Coupon" EntitySet="Coupon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_優惠券清單_公司資料表1" Association="Self.FK_優惠券清單_公司資料表1">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="CouponList" EntitySet="CouponList" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TraveldateModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CityList">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryID" Type="Int32" />
+          <NavigationProperty Name="CountryList" Relationship="Self.FK_CityList_CountryList" FromRole="CityList" ToRole="CountryList" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_Member_CityList" FromRole="CityList" ToRole="Member" />
+          <NavigationProperty Name="ProductList" Relationship="Self.FK_ProductList_CityList" FromRole="CityList" ToRole="ProductList" />
+        </EntityType>
+        <EntityType Name="CommentList">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CommentScore" Type="Int32" />
+          <Property Name="MemberID" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="ProductID" Type="Int32" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_CommentList_Member" FromRole="CommentList" ToRole="Member" />
+          <NavigationProperty Name="ProductList" Relationship="Self.FK_CommentList_ProductList" FromRole="CommentList" ToRole="ProductList" />
+        </EntityType>
+        <EntityType Name="CommentPhotoList">
+          <Key>
+            <PropertyRef Name="CommentPhotoListID" />
+          </Key>
+          <Property Name="CommentPhotoListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommentID" Type="Int32" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Companion">
+          <Key>
+            <PropertyRef Name="CompanionID" />
+          </Key>
+          <Property Name="CompanionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MemberID" Type="Int32" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_Companion_Member" FromRole="Companion" ToRole="Member" />
+          <NavigationProperty Name="CompanionList" Relationship="Self.FK_CompanionList_Companion" FromRole="Companion" ToRole="CompanionList" />
+        </EntityType>
+        <EntityType Name="CompanionList">
+          <Key>
+            <PropertyRef Name="CompanionListID" />
+          </Key>
+          <Property Name="CompanionListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderDetailsID" Type="Int32" />
+          <Property Name="CompanionID" Type="Int32" />
+          <NavigationProperty Name="Companion" Relationship="Self.FK_CompanionList_Companion" FromRole="CompanionList" ToRole="Companion" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_CompanionList_OrderDetails" FromRole="CompanionList" ToRole="OrderDetails" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tax_ID_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="URL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Principal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ServerDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Enable" Type="Boolean" />
+          <NavigationProperty Name="ProductList" Relationship="Self.FK_公司商品清單_公司資料表1" FromRole="Company" ToRole="ProductList" />
+          <NavigationProperty Name="CouponList" Relationship="Self.FK_優惠券清單_公司資料表1" FromRole="Company" ToRole="CouponList" />
+        </EntityType>
+        <EntityType Name="CountryList">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CityList" Relationship="Self.FK_CityList_CountryList" FromRole="CountryList" ToRole="CityList" />
+        </EntityType>
+        <EntityType Name="Coupon">
+          <Key>
+            <PropertyRef Name="CouponID" />
+          </Key>
+          <Property Name="CouponID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="CouponListID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CouponList" Relationship="Self.FK_Coupon_CouponList" FromRole="Coupon" ToRole="CouponList" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_會員優惠券_會員資料表" FromRole="Coupon" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="CouponList">
+          <Key>
+            <PropertyRef Name="CouponListID" />
+          </Key>
+          <Property Name="CouponListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CouponName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CompanyID" Type="Int32" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DueDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_優惠券清單_公司資料表1" FromRole="CouponList" ToRole="Company" />
+          <NavigationProperty Name="Coupon" Relationship="Self.FK_Coupon_CouponList" FromRole="CouponList" ToRole="Coupon" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_CouponList" FromRole="CouponList" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Favorite">
+          <Key>
+            <PropertyRef Name="FavoriteID" />
+          </Key>
+          <Property Name="FavoriteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" />
+          <NavigationProperty Name="ProductList" Relationship="Self.FK_Favorite_ProductList" FromRole="Favorite" ToRole="ProductList" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_我的收藏_會員資料表" FromRole="Favorite" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="LevelList">
+          <Key>
+            <PropertyRef Name="LevelID" />
+          </Key>
+          <Property Name="LevelID" Type="Int32" Nullable="false" />
+          <Property Name="Standard" Type="Int32" />
+          <Property Name="Level" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_Member_LevelList" FromRole="LevelList" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LevelID" Type="Int32" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Enable" Type="Boolean" />
+          <NavigationProperty Name="CityList" Relationship="Self.FK_Member_CityList" FromRole="Member" ToRole="CityList" />
+          <NavigationProperty Name="CommentList" Relationship="Self.FK_CommentList_Member" FromRole="Member" ToRole="CommentList" />
+          <NavigationProperty Name="Companion" Relationship="Self.FK_Companion_Member" FromRole="Member" ToRole="Companion" />
+          <NavigationProperty Name="Coupon" Relationship="Self.FK_會員優惠券_會員資料表" FromRole="Member" ToRole="Coupon" />
+          <NavigationProperty Name="Favorite" Relationship="Self.FK_我的收藏_會員資料表" FromRole="Member" ToRole="Favorite" />
+          <NavigationProperty Name="LevelList" Relationship="Self.FK_Member_LevelList" FromRole="Member" ToRole="LevelList" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Member" FromRole="Member" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailsID" />
+          </Key>
+          <Property Name="OrderDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="TripID" Type="Int32" />
+          <Property Name="SellingPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CompanionList" Relationship="Self.FK_CompanionList_OrderDetails" FromRole="OrderDetails" ToRole="CompanionList" />
+          <NavigationProperty Name="OrderStatusList" Relationship="Self.FK_OrderDetails_OrderStatusList" FromRole="OrderDetails" ToRole="OrderStatusList" />
+          <NavigationProperty Name="Trip" Relationship="Self.FK_會員訂單清單_出團" FromRole="OrderDetails" ToRole="Trip" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_會員訂單清單_會員訂單" FromRole="OrderDetails" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="Datetime" Type="DateTime" Precision="3" />
+          <Property Name="CouponListID" Type="Int32" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="PaymentID" Type="Int32" />
+          <Property Name="IsCart" Type="Boolean" />
+          <NavigationProperty Name="CouponList" Relationship="Self.FK_Orders_CouponList" FromRole="Orders" ToRole="CouponList" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_Orders_Member" FromRole="Orders" ToRole="Member" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_會員訂單清單_會員訂單" FromRole="Orders" ToRole="OrderDetails" />
+          <NavigationProperty Name="PaymentList" Relationship="Self.FK_Orders_PaymentList" FromRole="Orders" ToRole="PaymentList" />
+        </EntityType>
+        <EntityType Name="OrderStatusList">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_OrderStatusList" FromRole="OrderStatusList" ToRole="OrderDetails" />
+        </EntityType>
+        <EntityType Name="PaymentList">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="Int32" Nullable="false" />
+          <Property Name="Payment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_PaymentList" FromRole="PaymentList" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="ProductCategoryID" />
+          </Key>
+          <Property Name="ProductCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="ProductCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductTagDetails" Relationship="Self.FK_ProductTagDetails_ProductTag" FromRole="ProductCategory" ToRole="ProductTagDetails" />
+        </EntityType>
+        <EntityType Name="ProductList">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductTypeID" Type="Int32" />
+          <Property Name="ExamineStatus" Type="Boolean" />
+          <Property Name="PlanName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PlanDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discontinued" Type="Boolean" />
+          <Property Name="Outline" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OutlineForSearch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Place" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CityList" Relationship="Self.FK_ProductList_CityList" FromRole="ProductList" ToRole="CityList" />
+          <NavigationProperty Name="CommentList" Relationship="Self.FK_CommentList_ProductList" FromRole="ProductList" ToRole="CommentList" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_公司商品清單_公司資料表1" FromRole="ProductList" ToRole="Company" />
+          <NavigationProperty Name="Favorite" Relationship="Self.FK_Favorite_ProductList" FromRole="ProductList" ToRole="Favorite" />
+          <NavigationProperty Name="ProductTypeList" Relationship="Self.FK_ProductList_ProductTypeList" FromRole="ProductList" ToRole="ProductTypeList" />
+          <NavigationProperty Name="ProductPhotoList" Relationship="Self.FK_ProductPhotoList_ProductList" FromRole="ProductList" ToRole="ProductPhotoList" />
+          <NavigationProperty Name="ProductTagList" Relationship="Self.FK_ProductTagList_ProductList" FromRole="ProductList" ToRole="ProductTagList" />
+          <NavigationProperty Name="Trip" Relationship="Self.FK_Trip_ProductList" FromRole="ProductList" ToRole="Trip" />
+        </EntityType>
+        <EntityType Name="ProductPhotoList">
+          <Key>
+            <PropertyRef Name="ProductPhotoListID" />
+          </Key>
+          <Property Name="ProductPhotoListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="OnSlide" Type="Boolean" />
+          <NavigationProperty Name="ProductList" Relationship="Self.FK_ProductPhotoList_ProductList" FromRole="ProductPhotoList" ToRole="ProductList" />
+          <NavigationProperty Name="TripDetail" Relationship="Self.FK_TripDetail_ProductPhotoList" FromRole="ProductPhotoList" ToRole="TripDetail" />
+        </EntityType>
+        <EntityType Name="ProductTagDetails">
+          <Key>
+            <PropertyRef Name="ProductTagDetailsID" />
+          </Key>
+          <Property Name="ProductTagDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCategoryID" Type="Int32" />
+          <Property Name="ProductTagDetailsName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductCategory" Relationship="Self.FK_ProductTagDetails_ProductTag" FromRole="ProductTagDetails" ToRole="ProductCategory" />
+          <NavigationProperty Name="ProductTagList" Relationship="Self.FK_ProductTagList_ProductTagDetails" FromRole="ProductTagDetails" ToRole="ProductTagList" />
+        </EntityType>
+        <EntityType Name="ProductTagList">
+          <Key>
+            <PropertyRef Name="ProductTagListID" />
+          </Key>
+          <Property Name="ProductTagListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="ProductTagDetailsID" Type="Int32" />
+          <NavigationProperty Name="ProductList" Relationship="Self.FK_ProductTagList_ProductList" FromRole="ProductTagList" ToRole="ProductList" />
+          <NavigationProperty Name="ProductTagDetails" Relationship="Self.FK_ProductTagList_ProductTagDetails" FromRole="ProductTagList" ToRole="ProductTagDetails" />
+        </EntityType>
+        <EntityType Name="ProductTypeList">
+          <Key>
+            <PropertyRef Name="ProductTypeID" />
+          </Key>
+          <Property Name="ProductTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ProductType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductList" Relationship="Self.FK_ProductList_ProductTypeList" FromRole="ProductTypeList" ToRole="ProductList" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Trip">
+          <Key>
+            <PropertyRef Name="TripID" />
+          </Key>
+          <Property Name="TripID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MinNum" Type="Int32" />
+          <Property Name="MaxNum" Type="Int32" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DiscountExpirationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_會員訂單清單_出團" FromRole="Trip" ToRole="OrderDetails" />
+          <NavigationProperty Name="ProductList" Relationship="Self.FK_Trip_ProductList" FromRole="Trip" ToRole="ProductList" />
+          <NavigationProperty Name="TripDetail" Relationship="Self.FK_TripDetail_Trip" FromRole="Trip" ToRole="TripDetail" />
+        </EntityType>
+        <EntityType Name="TripDetail">
+          <Key>
+            <PropertyRef Name="TripDetailID" />
+          </Key>
+          <Property Name="TripDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TripID" Type="Int32" />
+          <Property Name="TripDetail1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductPhotoListID" Type="Int32" />
+          <Property Name="TripDay" Type="Int32" />
+          <NavigationProperty Name="ProductPhotoList" Relationship="Self.FK_TripDetail_ProductPhotoList" FromRole="TripDetail" ToRole="ProductPhotoList" />
+          <NavigationProperty Name="Trip" Relationship="Self.FK_TripDetail_Trip" FromRole="TripDetail" ToRole="Trip" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeLevel" Type="Int32" />
+          <Property Name="EmployeeAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeePassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_CityList_CountryList">
+          <End Role="CountryList" Type="Self.CountryList" Multiplicity="0..1" />
+          <End Role="CityList" Type="Self.CityList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryList">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="CityList">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_CityList">
+          <End Role="CityList" Type="Self.CityList" Multiplicity="0..1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityList">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductList_CityList">
+          <End Role="CityList" Type="Self.CityList" Multiplicity="0..1" />
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityList">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="ProductList">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentList_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+          <End Role="CommentList" Type="Self.CommentList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="CommentList">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentList_ProductList">
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="0..1" />
+          <End Role="CommentList" Type="Self.CommentList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductList">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="CommentList">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Companion_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+          <End Role="Companion" Type="Self.Companion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Companion">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanionList_Companion">
+          <End Role="Companion" Type="Self.Companion" Multiplicity="0..1" />
+          <End Role="CompanionList" Type="Self.CompanionList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companion">
+              <PropertyRef Name="CompanionID" />
+            </Principal>
+            <Dependent Role="CompanionList">
+              <PropertyRef Name="CompanionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanionList_OrderDetails">
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="0..1" />
+          <End Role="CompanionList" Type="Self.CompanionList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderDetails">
+              <PropertyRef Name="OrderDetailsID" />
+            </Principal>
+            <Dependent Role="CompanionList">
+              <PropertyRef Name="OrderDetailsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_公司商品清單_公司資料表1">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="ProductList">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_優惠券清單_公司資料表1">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="CouponList" Type="Self.CouponList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="CouponList">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coupon_CouponList">
+          <End Role="CouponList" Type="Self.CouponList" Multiplicity="1" />
+          <End Role="Coupon" Type="Self.Coupon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CouponList">
+              <PropertyRef Name="CouponListID" />
+            </Principal>
+            <Dependent Role="Coupon">
+              <PropertyRef Name="CouponListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_會員優惠券_會員資料表">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Coupon" Type="Self.Coupon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Coupon">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_CouponList">
+          <End Role="CouponList" Type="Self.CouponList" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CouponList">
+              <PropertyRef Name="CouponListID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="CouponListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favorite_ProductList">
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="0..1" />
+          <End Role="Favorite" Type="Self.Favorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductList">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Favorite">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_我的收藏_會員資料表">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Favorite" Type="Self.Favorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Favorite">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_LevelList">
+          <End Role="LevelList" Type="Self.LevelList" Multiplicity="0..1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LevelList">
+              <PropertyRef Name="LevelID" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="LevelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_OrderStatusList">
+          <End Role="OrderStatusList" Type="Self.OrderStatusList" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatusList">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_會員訂單清單_出團">
+          <End Role="Trip" Type="Self.Trip" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trip">
+              <PropertyRef Name="TripID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="TripID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_會員訂單清單_會員訂單">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_PaymentList">
+          <End Role="PaymentList" Type="Self.PaymentList" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentList">
+              <PropertyRef Name="PaymentID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="PaymentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTagDetails_ProductTag">
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="0..1" />
+          <End Role="ProductTagDetails" Type="Self.ProductTagDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="ProductCategoryID" />
+            </Principal>
+            <Dependent Role="ProductTagDetails">
+              <PropertyRef Name="ProductCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductList_ProductTypeList">
+          <End Role="ProductTypeList" Type="Self.ProductTypeList" Multiplicity="0..1" />
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTypeList">
+              <PropertyRef Name="ProductTypeID" />
+            </Principal>
+            <Dependent Role="ProductList">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductPhotoList_ProductList">
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="0..1" />
+          <End Role="ProductPhotoList" Type="Self.ProductPhotoList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductList">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductPhotoList">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTagList_ProductList">
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="0..1" />
+          <End Role="ProductTagList" Type="Self.ProductTagList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductList">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductTagList">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trip_ProductList">
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="1" />
+          <End Role="Trip" Type="Self.Trip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductList">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Trip">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TripDetail_ProductPhotoList">
+          <End Role="ProductPhotoList" Type="Self.ProductPhotoList" Multiplicity="0..1" />
+          <End Role="TripDetail" Type="Self.TripDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductPhotoList">
+              <PropertyRef Name="ProductPhotoListID" />
+            </Principal>
+            <Dependent Role="TripDetail">
+              <PropertyRef Name="ProductPhotoListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTagList_ProductTagDetails">
+          <End Role="ProductTagDetails" Type="Self.ProductTagDetails" Multiplicity="0..1" />
+          <End Role="ProductTagList" Type="Self.ProductTagList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTagDetails">
+              <PropertyRef Name="ProductTagDetailsID" />
+            </Principal>
+            <Dependent Role="ProductTagList">
+              <PropertyRef Name="ProductTagDetailsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TripDetail_Trip">
+          <End Role="Trip" Type="Self.Trip" Multiplicity="0..1" />
+          <End Role="TripDetail" Type="Self.TripDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trip">
+              <PropertyRef Name="TripID" />
+            </Principal>
+            <Dependent Role="TripDetail">
+              <PropertyRef Name="TripID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TraveldateEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CityList" EntityType="Self.CityList" />
+          <EntitySet Name="CommentList" EntityType="Self.CommentList" />
+          <EntitySet Name="CommentPhotoList" EntityType="Self.CommentPhotoList" />
+          <EntitySet Name="Companion" EntityType="Self.Companion" />
+          <EntitySet Name="CompanionList" EntityType="Self.CompanionList" />
+          <EntitySet Name="Company" EntityType="Self.Company" />
+          <EntitySet Name="CountryList" EntityType="Self.CountryList" />
+          <EntitySet Name="Coupon" EntityType="Self.Coupon" />
+          <EntitySet Name="CouponList" EntityType="Self.CouponList" />
+          <EntitySet Name="Favorite" EntityType="Self.Favorite" />
+          <EntitySet Name="LevelList" EntityType="Self.LevelList" />
+          <EntitySet Name="Member" EntityType="Self.Member" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="OrderStatusList" EntityType="Self.OrderStatusList" />
+          <EntitySet Name="PaymentList" EntityType="Self.PaymentList" />
+          <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" />
+          <EntitySet Name="ProductList" EntityType="Self.ProductList" />
+          <EntitySet Name="ProductPhotoList" EntityType="Self.ProductPhotoList" />
+          <EntitySet Name="ProductTagDetails" EntityType="Self.ProductTagDetails" />
+          <EntitySet Name="ProductTagList" EntityType="Self.ProductTagList" />
+          <EntitySet Name="ProductTypeList" EntityType="Self.ProductTypeList" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Trip" EntityType="Self.Trip" />
+          <EntitySet Name="TripDetail" EntityType="Self.TripDetail" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <AssociationSet Name="FK_CityList_CountryList" Association="Self.FK_CityList_CountryList">
+            <End Role="CountryList" EntitySet="CountryList" />
+            <End Role="CityList" EntitySet="CityList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_CityList" Association="Self.FK_Member_CityList">
+            <End Role="CityList" EntitySet="CityList" />
+            <End Role="Member" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductList_CityList" Association="Self.FK_ProductList_CityList">
+            <End Role="CityList" EntitySet="CityList" />
+            <End Role="ProductList" EntitySet="ProductList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentList_Member" Association="Self.FK_CommentList_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="CommentList" EntitySet="CommentList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentList_ProductList" Association="Self.FK_CommentList_ProductList">
+            <End Role="ProductList" EntitySet="ProductList" />
+            <End Role="CommentList" EntitySet="CommentList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Companion_Member" Association="Self.FK_Companion_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Companion" EntitySet="Companion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanionList_Companion" Association="Self.FK_CompanionList_Companion">
+            <End Role="Companion" EntitySet="Companion" />
+            <End Role="CompanionList" EntitySet="CompanionList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanionList_OrderDetails" Association="Self.FK_CompanionList_OrderDetails">
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+            <End Role="CompanionList" EntitySet="CompanionList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_公司商品清單_公司資料表1" Association="Self.FK_公司商品清單_公司資料表1">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="ProductList" EntitySet="ProductList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_優惠券清單_公司資料表1" Association="Self.FK_優惠券清單_公司資料表1">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="CouponList" EntitySet="CouponList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coupon_CouponList" Association="Self.FK_Coupon_CouponList">
+            <End Role="CouponList" EntitySet="CouponList" />
+            <End Role="Coupon" EntitySet="Coupon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_會員優惠券_會員資料表" Association="Self.FK_會員優惠券_會員資料表">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Coupon" EntitySet="Coupon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_CouponList" Association="Self.FK_Orders_CouponList">
+            <End Role="CouponList" EntitySet="CouponList" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favorite_ProductList" Association="Self.FK_Favorite_ProductList">
+            <End Role="ProductList" EntitySet="ProductList" />
+            <End Role="Favorite" EntitySet="Favorite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_我的收藏_會員資料表" Association="Self.FK_我的收藏_會員資料表">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Favorite" EntitySet="Favorite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_LevelList" Association="Self.FK_Member_LevelList">
+            <End Role="LevelList" EntitySet="LevelList" />
+            <End Role="Member" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Member" Association="Self.FK_Orders_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_OrderStatusList" Association="Self.FK_OrderDetails_OrderStatusList">
+            <End Role="OrderStatusList" EntitySet="OrderStatusList" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_會員訂單清單_出團" Association="Self.FK_會員訂單清單_出團">
+            <End Role="Trip" EntitySet="Trip" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_會員訂單清單_會員訂單" Association="Self.FK_會員訂單清單_會員訂單">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_PaymentList" Association="Self.FK_Orders_PaymentList">
+            <End Role="PaymentList" EntitySet="PaymentList" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTagDetails_ProductTag" Association="Self.FK_ProductTagDetails_ProductTag">
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+            <End Role="ProductTagDetails" EntitySet="ProductTagDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductList_ProductTypeList" Association="Self.FK_ProductList_ProductTypeList">
+            <End Role="ProductTypeList" EntitySet="ProductTypeList" />
+            <End Role="ProductList" EntitySet="ProductList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductPhotoList_ProductList" Association="Self.FK_ProductPhotoList_ProductList">
+            <End Role="ProductList" EntitySet="ProductList" />
+            <End Role="ProductPhotoList" EntitySet="ProductPhotoList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTagList_ProductList" Association="Self.FK_ProductTagList_ProductList">
+            <End Role="ProductList" EntitySet="ProductList" />
+            <End Role="ProductTagList" EntitySet="ProductTagList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trip_ProductList" Association="Self.FK_Trip_ProductList">
+            <End Role="ProductList" EntitySet="ProductList" />
+            <End Role="Trip" EntitySet="Trip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TripDetail_ProductPhotoList" Association="Self.FK_TripDetail_ProductPhotoList">
+            <End Role="ProductPhotoList" EntitySet="ProductPhotoList" />
+            <End Role="TripDetail" EntitySet="TripDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTagList_ProductTagDetails" Association="Self.FK_ProductTagList_ProductTagDetails">
+            <End Role="ProductTagDetails" EntitySet="ProductTagDetails" />
+            <End Role="ProductTagList" EntitySet="ProductTagList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TripDetail_Trip" Association="Self.FK_TripDetail_Trip">
+            <End Role="Trip" EntitySet="Trip" />
+            <End Role="TripDetail" EntitySet="TripDetail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TraveldateModelStoreContainer" CdmEntityContainer="TraveldateEntities">
+          <EntitySetMapping Name="CityList">
+            <EntityTypeMapping TypeName="TraveldateModel.CityList">
+              <MappingFragment StoreEntitySet="CityList">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommentList">
+            <EntityTypeMapping TypeName="TraveldateModel.CommentList">
+              <MappingFragment StoreEntitySet="CommentList">
+                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="CommentScore" ColumnName="CommentScore" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommentPhotoList">
+            <EntityTypeMapping TypeName="TraveldateModel.CommentPhotoList">
+              <MappingFragment StoreEntitySet="CommentPhotoList">
+                <ScalarProperty Name="CommentPhotoListID" ColumnName="CommentPhotoListID" />
+                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companion">
+            <EntityTypeMapping TypeName="TraveldateModel.Companion">
+              <MappingFragment StoreEntitySet="Companion">
+                <ScalarProperty Name="CompanionID" ColumnName="CompanionID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanionList">
+            <EntityTypeMapping TypeName="TraveldateModel.CompanionList">
+              <MappingFragment StoreEntitySet="CompanionList">
+                <ScalarProperty Name="CompanionListID" ColumnName="CompanionListID" />
+                <ScalarProperty Name="OrderDetailsID" ColumnName="OrderDetailsID" />
+                <ScalarProperty Name="CompanionID" ColumnName="CompanionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="TraveldateModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="Tax_ID_Number" ColumnName="Tax_ID_Number" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Principal" ColumnName="Principal" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ServerDescription" ColumnName="ServerDescription" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CountryList">
+            <EntityTypeMapping TypeName="TraveldateModel.CountryList">
+              <MappingFragment StoreEntitySet="CountryList">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coupon">
+            <EntityTypeMapping TypeName="TraveldateModel.Coupon">
+              <MappingFragment StoreEntitySet="Coupon">
+                <ScalarProperty Name="CouponID" ColumnName="CouponID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="CouponListID" ColumnName="CouponListID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CouponList">
+            <EntityTypeMapping TypeName="TraveldateModel.CouponList">
+              <MappingFragment StoreEntitySet="CouponList">
+                <ScalarProperty Name="CouponListID" ColumnName="CouponListID" />
+                <ScalarProperty Name="CouponName" ColumnName="CouponName" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Favorite">
+            <EntityTypeMapping TypeName="TraveldateModel.Favorite">
+              <MappingFragment StoreEntitySet="Favorite">
+                <ScalarProperty Name="FavoriteID" ColumnName="FavoriteID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LevelList">
+            <EntityTypeMapping TypeName="TraveldateModel.LevelList">
+              <MappingFragment StoreEntitySet="LevelList">
+                <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+                <ScalarProperty Name="Standard" ColumnName="Standard" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Member">
+            <EntityTypeMapping TypeName="TraveldateModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="TraveldateModel.OrderDetails">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="OrderDetailsID" ColumnName="OrderDetailsID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="TripID" ColumnName="TripID" />
+                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="TraveldateModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+                <ScalarProperty Name="CouponListID" ColumnName="CouponListID" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="IsCart" ColumnName="IsCart" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStatusList">
+            <EntityTypeMapping TypeName="TraveldateModel.OrderStatusList">
+              <MappingFragment StoreEntitySet="OrderStatusList">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentList">
+            <EntityTypeMapping TypeName="TraveldateModel.PaymentList">
+              <MappingFragment StoreEntitySet="PaymentList">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCategory">
+            <EntityTypeMapping TypeName="TraveldateModel.ProductCategory">
+              <MappingFragment StoreEntitySet="ProductCategory">
+                <ScalarProperty Name="ProductCategoryID" ColumnName="ProductCategoryID" />
+                <ScalarProperty Name="ProductCategoryName" ColumnName="ProductCategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductList">
+            <EntityTypeMapping TypeName="TraveldateModel.ProductList">
+              <MappingFragment StoreEntitySet="ProductList">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+                <ScalarProperty Name="ExamineStatus" ColumnName="ExamineStatus" />
+                <ScalarProperty Name="PlanName" ColumnName="PlanName" />
+                <ScalarProperty Name="PlanDescription" ColumnName="PlanDescription" />
+                <ScalarProperty Name="Discontinued" ColumnName="Discontinued" />
+                <ScalarProperty Name="Outline" ColumnName="Outline" />
+                <ScalarProperty Name="OutlineForSearch" ColumnName="OutlineForSearch" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductPhotoList">
+            <EntityTypeMapping TypeName="TraveldateModel.ProductPhotoList">
+              <MappingFragment StoreEntitySet="ProductPhotoList">
+                <ScalarProperty Name="ProductPhotoListID" ColumnName="ProductPhotoListID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="OnSlide" ColumnName="OnSlide" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTagDetails">
+            <EntityTypeMapping TypeName="TraveldateModel.ProductTagDetails">
+              <MappingFragment StoreEntitySet="ProductTagDetails">
+                <ScalarProperty Name="ProductTagDetailsID" ColumnName="ProductTagDetailsID" />
+                <ScalarProperty Name="ProductCategoryID" ColumnName="ProductCategoryID" />
+                <ScalarProperty Name="ProductTagDetailsName" ColumnName="ProductTagDetailsName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTagList">
+            <EntityTypeMapping TypeName="TraveldateModel.ProductTagList">
+              <MappingFragment StoreEntitySet="ProductTagList">
+                <ScalarProperty Name="ProductTagListID" ColumnName="ProductTagListID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductTagDetailsID" ColumnName="ProductTagDetailsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTypeList">
+            <EntityTypeMapping TypeName="TraveldateModel.ProductTypeList">
+              <MappingFragment StoreEntitySet="ProductTypeList">
+                <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TraveldateModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trip">
+            <EntityTypeMapping TypeName="TraveldateModel.Trip">
+              <MappingFragment StoreEntitySet="Trip">
+                <ScalarProperty Name="TripID" ColumnName="TripID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="MinNum" ColumnName="MinNum" />
+                <ScalarProperty Name="MaxNum" ColumnName="MaxNum" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="DiscountExpirationDate" ColumnName="DiscountExpirationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TripDetail">
+            <EntityTypeMapping TypeName="TraveldateModel.TripDetail">
+              <MappingFragment StoreEntitySet="TripDetail">
+                <ScalarProperty Name="TripDetailID" ColumnName="TripDetailID" />
+                <ScalarProperty Name="TripID" ColumnName="TripID" />
+                <ScalarProperty Name="TripDetail1" ColumnName="TripDetail" />
+                <ScalarProperty Name="ProductPhotoListID" ColumnName="ProductPhotoListID" />
+                <ScalarProperty Name="TripDay" ColumnName="TripDay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="TraveldateModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="EmployeeLevel" ColumnName="EmployeeLevel" />
+                <ScalarProperty Name="EmployeeAccount" ColumnName="EmployeeAccount" />
+                <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

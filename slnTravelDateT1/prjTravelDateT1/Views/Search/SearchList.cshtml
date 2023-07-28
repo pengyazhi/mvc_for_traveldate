@@ -1,0 +1,109 @@
+﻿@using prjTravelDateT1.Models;
+@model List<CFilterProduct>
+
+@{
+    ViewBag.Title = "SearchList";
+}
+
+<h2>SearchList</h2>
+<div class="col-3"></div>
+<div class="col-9">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model[0].ProductID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].fCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].OutlineForSearch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].fDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].fPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].fType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].fProductTags)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].fPhoto)
+            </th>
+            <th></th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fCity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OutlineForSearch)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fProductTags)
+                </td>
+                <td>
+                    @if (item.fPhoto != null)
+                    {
+                        <img src="data:image/jpg;base64,@Convert.ToBase64String(item.fPhoto)" alt="@item.ProductName" width="200" height="150" />
+                    }
+                </td>
+
+            </tr>
+        }
+    </table>
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="data:image/jpg;base64,@Convert.ToBase64String(item.fPhoto)" class="img-fluid rounded-start" alt="@item.ProductName" >
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.ProductName)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.OutlineForSearch) 商品列表中的outline for search</p>
+                        <p class="card-text"><small class="text-body-secondary">@Html.DisplayFor(modelItem => item.fDate)</small></p>
+                        <div class="flex-row">
+                            <span class="card-text"><small class="text-body-secondary">@Html.DisplayFor(modelItem => item.fDate)</small></span>
+                            <span class="card-text">@Html.DisplayFor(modelItem => item.fPrice)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

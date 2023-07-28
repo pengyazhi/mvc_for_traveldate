@@ -1,0 +1,38 @@
+
+.search_container{
+    padding: 5px;
+    margin: 5px 10px 5px 10px;
+    align-items: center;
+    border: 1px #D0D0D0 solid;
+    border-radius: 5px;
+}
+
+.tags
+{
+    padding: 5px 0 5px 0;
+    list-style: none;
+}
+
+.category-click
+{
+    padding-left: 15px;
+}
+
+.lblCategory{
+    width:80%;
+
+}
+.product-card{
+    margin: 10px 0 10px 0;
+    border: 1px black solid;
+    padding: 10px 10px 10px 0;
+}
+.sort-a{
+    text-decoration: none;
+}
+.sort-a:visited{
+    color: #88A8BC;
+}
+.sort-a:hover{
+    color: #185ab6;
+}

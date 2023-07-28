@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cf19762037f9419b9aab3235a645af85" Name="Diagram1">
+        <EntityTypeShape EntityType="TraveldateModel.CityList" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.CommentList" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.CommentPhotoList" Width="1.5" PointX="8.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.Companion" Width="1.5" PointX="10.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.CompanionList" Width="1.5" PointX="12.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.Company" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.CountryList" Width="1.5" PointX="1.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.Coupon" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.CouponList" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.Favorite" Width="1.5" PointX="8.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.LevelList" Width="1.5" PointX="0.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.Member" Width="1.5" PointX="3" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.OrderDetails" Width="1.5" PointX="10.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.Orders" Width="1.5" PointX="8.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.OrderStatusList" Width="1.5" PointX="8.25" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.PaymentList" Width="1.5" PointX="6" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.ProductCategory" Width="1.5" PointX="3.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.ProductList" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.ProductPhotoList" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.ProductTagDetails" Width="1.5" PointX="6" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.ProductTagList" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.ProductTypeList" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.Trip" Width="1.5" PointX="5.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.TripDetail" Width="1.5" PointX="7.5" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TraveldateModel.Employees" Width="1.5" PointX="10.75" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="TraveldateModel.FK_CityList_CountryList" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_Member_CityList" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_ProductList_CityList" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_CommentList_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_CommentList_ProductList" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_Companion_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_CompanionList_Companion" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_CompanionList_OrderDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_公司商品清單_公司資料表1" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_優惠券清單_公司資料表1" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_Coupon_CouponList" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_會員優惠券_會員資料表" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_Orders_CouponList" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_Favorite_ProductList" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_我的收藏_會員資料表" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_Member_LevelList" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_Orders_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_OrderDetails_OrderStatusList" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_會員訂單清單_出團" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_會員訂單清單_會員訂單" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_Orders_PaymentList" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_ProductTagDetails_ProductTag" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_ProductList_ProductTypeList" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_ProductPhotoList_ProductList" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_ProductTagList_ProductList" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_Trip_ProductList" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_TripDetail_ProductPhotoList" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_ProductTagList_ProductTagDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_TripDetail_Trip" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

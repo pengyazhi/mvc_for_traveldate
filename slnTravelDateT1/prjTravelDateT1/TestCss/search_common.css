@@ -1,0 +1,102 @@
+/*原標籤改樣式*/
+input {
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+li {
+    margin-left: 10px;
+}
+
+span,
+label {
+    padding: 5px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    text-align: start;
+}
+
+
+
+/*會切換的icon*/
+#arrow_bottom_down,
+.checkbox {
+    display: none;
+}
+
+.checkbox,
+.uncheckbox {
+    width: 24px;
+    height: 24px;
+}
+
+.arrow_img_center {
+    padding-top: 4px;
+}
+
+/*純icon*/
+.icon_search {
+    width: 24px;
+    height: 24px;
+}
+
+
+
+/*文字大小*/
+.t-l {
+    font-size: 20px;
+}
+
+.t-m {
+    font-size: 18px;
+}
+
+.t-s {
+    font-size: 14px;
+}
+
+/*文字顏色,背景顏色*/
+.text_primary {
+    color:#00000098;
+}
+
+.text_secondary {
+    color: #88A8BC;
+}
+.text_active{
+    color: #185ab6;
+}
+
+/*字體*/
+.font-weight{
+    font-weight: bold;
+}
+.filter-title{
+    padding-bottom: 10px;
+    font-weight: bolder;
+}
+
+/*排列:左右/垂直*/
+.controls-display-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.controls-display-column {
+    display: flex;
+    flex-direction: column;
+}
+/*格式:置中/靠左/靠右/靠上/靠下*/
+.filter-block-center {
+    margin: 0 20px 0 20px;
+}
+/*區隔線*/
+.divide-line {
+    border-radius: 0;
+    border-bottom: 2px solid #dee1d9;
+}

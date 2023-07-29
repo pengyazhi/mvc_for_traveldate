@@ -144,6 +144,7 @@
     <Content Include="TestCss\icon\arrow_bottom_down_icon.png" />
     <Content Include="TestCss\icon\arrow_top_up_icon.png" />
     <Content Include="TestCss\icon\checkbox.png" />
+    <Content Include="TestCss\icon\icon_for_search_container.png" />
     <Content Include="TestCss\icon\search.png" />
     <Content Include="TestCss\icon\uncheckbox.png" />
     <Content Include="TestCss\search_common.css" />
@@ -213,8 +214,8 @@
     <Compile Include="Member.cs">
       <DependentUpon>dbTravelDate.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CFilterProduct.cs" />
-    <Compile Include="Models\CFilterProductFactory.cs" />
+    <Compile Include="Models\CFilteredProduct.cs" />
+    <Compile Include="Models\CFilteredProductFactory.cs" />
     <Compile Include="OrderDetails.cs">
       <DependentUpon>dbTravelDate.tt</DependentUpon>
     </Compile>
@@ -255,6 +256,7 @@
     <Compile Include="TripDetail.cs">
       <DependentUpon>dbTravelDate.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\CSearchListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

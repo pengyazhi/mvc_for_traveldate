@@ -12,13 +12,14 @@ namespace prjTravelDateT1.Controllers
         // GET: Search
         public ActionResult SearchList()
         {
-            CFilterProductFactory products = new CFilterProductFactory();
-            List<CFilterProduct> datas = products.qureyFilterProductsInfo();
+            CFilteredProductFactory products = new CFilteredProductFactory();
+            List<CFilteredProduct> datas = products.qureyFilterProductsInfo();
+            //List<CCategory> datas1 = products.qureyFilterProductsCategory();
             return View(datas);
         }
         public ActionResult Test() {
-            CFilterProductFactory products = new CFilterProductFactory();
-            List<CFilterProduct> datas = products.qureyFilterProductsInfo();
+            CFilteredProductFactory products = new CFilteredProductFactory();
+            List<CFilteredProduct> datas = products.qureyFilterProductsInfo();
             return View(datas);
         }
     }

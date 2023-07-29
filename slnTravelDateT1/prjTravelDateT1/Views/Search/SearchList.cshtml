@@ -1,12 +1,12 @@
 ﻿@using prjTravelDateT1.Models;
-@model List<CFilterProduct>
+@model List<CFilteredProduct>
 
 @{
     ViewBag.Title = "SearchList";
 }
 
 <h2>SearchList</h2>
-<div class="col-3"></div>
+
 <div class="col-9">
     <p>
         @Html.ActionLink("Create New", "Create")
@@ -82,28 +82,80 @@
         }
     </table>
     </div>
+<div class="row gap-0 column-gap-5 justify-content-center">
+    <div class="col-3 border g-0">
+        @foreach()
+            {
+        }
+        <div class="border mb-3">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+   
+    <div class="col-7 border g-0 justify-content-end">
+        <div class="row g-0">
+            @foreach (var item in Model)
+            {
+                <input type="hidden" value="@Html.DisplayFor(modelItem => item.fProductTags)" />
 
-    @foreach (var item in Model)
-    {
-        <div class="card mb-3" style="max-width: 540px;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="data:image/jpg;base64,@Convert.ToBase64String(item.fPhoto)" class="img-fluid rounded-start" alt="@item.ProductName" >
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.ProductName)</h5>
-                        <p class="card-text">@Html.DisplayFor(modelItem => item.OutlineForSearch) 商品列表中的outline for search</p>
-                        <p class="card-text"><small class="text-body-secondary">@Html.DisplayFor(modelItem => item.fDate)</small></p>
-                        <div class="flex-row">
-                            <span class="card-text"><small class="text-body-secondary">@Html.DisplayFor(modelItem => item.fDate)</small></span>
-                            <span class="card-text">@Html.DisplayFor(modelItem => item.fPrice)</span>
+                string salesCount = "";
+                if (item.fOrederCount > 1000)
+                {
+
+                    salesCount = $"{item.fOrederCount / 1000} K+ 個已訂購";
+                }
+                else
+                {
+                    salesCount = $"{item.fOrederCount} 個已訂購";
+                }
+                <div class="card mb-3 col-12">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="data:image/jpg;base64,@Convert.ToBase64String(item.fPhoto)" class="img-fluid rounded-start" alt="@item.ProductName">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.ProductName)</h5>
+                                <p class="card-text">@Html.DisplayFor(modelItem => item.OutlineForSearch) 商品列表中的outline for search</p>
+                                <p class="card-text">
+                                    <small class="text-body-secondary">@Html.DisplayFor(modelItem => item.fDate) 前</small>
+                                    <small class="text-body-secondary"> | @Html.DisplayFor(modelItem => item.fCity) </small>
+                                </p>
+                                <div class="row align-items-end">
+                                    <div class="col">
+                                        <p class="card-text">
+                                            <small class="text-body-secondary">@Html.DisplayFor(modelItem => item.strComment)</small>
+                                            <small class="text-body-secondary"> | @salesCount</small>
+                                        </p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="card-text fs-5 fw-bolder text-end"><span>TWD </span>@Html.DisplayFor(modelItem => item.fPrice)<span class="fs-6 fw-normal">起</span></p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
-    }
+    </div>
+</div>
+
+
+
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

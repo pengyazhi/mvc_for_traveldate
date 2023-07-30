@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "Forum";
+}
+
+<h2>Forum</h2>
+<div class="border">照片區</div>
+<div class="row border g-0 column-gap-5 justify-content-center">
+    <div class="col-3 border">
+        
+        <div class="border p-3 mt-2 mb-2">我要發文</div>
+        <div class="border p-3 mt-2 mb-2">搜尋文章
+            <div class="controls-display-row search_container">
+                <img class="search-icon-static me-3" src="~/MyCSS/icon/icons8-search-static-32.png">
+                <img class="search-icon-gif me-3" src="~/MyCSS/icon/icons8-search.gif" width="32" height="32">
+                <input class="search-input" type="text" placeholder="請輸入文章標題">
+            </div>
+        </div>
+        <div class="border p-3 mt-2 mb-2">依地區搜尋</div>
+        <div class="border p-3 mt-2 mb-2">依標籤搜尋</div>
+    </div>
+    <div class="col-7 border">
+        <div class="border p-3 mt-2 mb-2">
+            <p>精選文章</p>
+            <div class="row border g-0 column-gap-5 justify-content-center pt-3 pb-3">
+                <div id="carouselExampleIndicators" class="carousel slide">
+                    <div class="carousel-inner ">
+                        <div class="carousel-item active ">
+                            <div class="d-flex row g-0 justify-content-center">
+                                <div class="border p-3 me-4 col-5">
+                                    <p>文章標題1</p>
+                                    <div>
+                                        <img src="~/MyCSS/icon/icons8-person-100.png" width="32" height="32" />
+                                        <small class="text-body-secondary">
+                                            <span>發文者</span><span> | 發文時間 : 2023/07/30</span><span> | 回覆數 : </span>
+                                        </small>
+                                        <small class="text-body-secondary">
+                                            <span>#水上活動</span><span>#景點門票</span><span>#宜蘭</span>
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="border p-3 col-5">
+                                    <p>文章標題2</p>
+                                    <div>
+                                        <img src="~/MyCSS/icon/icons8-person-100.png" width="32" height="32" />
+                                        <small class="text-body-secondary">
+                                            <span>發文者</span><span> | 發文時間 : 2023/07/30</span><span> | 回覆數 : </span>
+                                        </small>
+                                        <small class="text-body-secondary">
+                                            <span>#水上活動</span><span>#景點門票</span><span>#宜蘭</span>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="d-flex row g-0 justify-content-center">
+                                <div class="border p-3 me-4 col-5">
+                                    <p>文章標題3</p>
+                                    <div>
+                                        <img src="~/MyCSS/icon/icons8-person-100.png" width="32" height="32" />
+                                        <small class="text-body-secondary">
+                                            <span>發文者</span><span> | 發文時間 : 2023/07/30</span><span> | 回覆數 : </span>
+                                        </small>
+                                        <small class="text-body-secondary">
+                                            <span>#水上活動</span><span>#景點門票</span><span>#宜蘭</span>
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="border p-3 col-5">
+                                    <p>文章標題4</p>
+                                    <div>
+                                        <img src="~/MyCSS/icon/icons8-person-100.png" width="32" height="32" />
+                                        <small class="text-body-secondary">
+                                            <span>發文者</span><span> | 發文時間 : 2023/07/30</span><span> | 回覆數 : </span>
+                                        </small>
+                                        <small class="text-body-secondary">
+                                            <span>#水上活動</span><span>#景點門票</span><span>#宜蘭</span>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="d-flex row g-0 justify-content-center">
+                                <div class="border p-3 me-4 col-5">
+                                    <p>文章標題5</p>
+                                    <div>
+                                        <img src="~/MyCSS/icon/icons8-person-100.png" width="32" height="32" />
+                                        <small class="text-body-secondary">
+                                            <span>發文者</span><span> | 發文時間 : 2023/07/30</span><span> | 回覆數 : </span>
+                                        </small>
+                                        <small class="text-body-secondary">
+                                            <span>#水上活動</span><span>#景點門票</span><span>#宜蘭</span>
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="border p-3 col-5">
+                                    <p>文章標題6</p>
+                                    <div>
+                                        <img src="~/MyCSS/icon/icons8-person-100.png" width="32" height="32" />
+                                        <small class="text-body-secondary">
+                                            <span>發文者</span><span> | 發文時間 : 2023/07/30</span><span> | 回覆數 : </span>
+                                        </small>
+                                        <small class="text-body-secondary">
+                                            <span>#水上活動</span><span>#景點門票</span><span>#宜蘭</span>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="align-items-center row my-bg-primary my-img-circle  my-w50-h50"><span class="carousel-control-prev-icon col" aria-hidden="true"></span></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="align-items-center row my-bg-primary my-img-circle  my-w50-h50"><span class="carousel-control-next-icon col" aria-hidden="true"></span></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="border p-3 mt-2 mb-2">
+            <span>排序 : 依</span><span> 發文時間</span><span> | 回覆數 </span><span> | 截團日期(近到遠) </span>
+        </div>
+        @for (int i = 1; i < 6; i++)
+        {
+            <div class="border d-flex row g-0 column-gap-3 p-3 mt-2 mb-2">
+                <div class="border col-2">商品快照</div>
+                <div class="border col-5">
+                    <p>文章標題 @i</p>
+                    <span>會員等級</span>
+                    <span> | 發文者</span>
+                    <span> | 發文時間</span>
+                </div>
+                <div class="border col-2">回覆數 : 0</div>
+                <div class="border col-2">文章照片</div>
+            </div>
+        }
+    </div>
+</div>
+
+

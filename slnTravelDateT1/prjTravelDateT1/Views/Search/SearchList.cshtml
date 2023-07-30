@@ -1,111 +1,119 @@
-﻿@using prjTravelDateT1.Models;
-@model List<CFilteredProduct>
+﻿@using prjTravelDateT1.ViewModels;
+@model prjTravelDateT1.ViewModels.CSearchListViewModel
 
 @{
     ViewBag.Title = "SearchList";
 }
 
-<h2>SearchList</h2>
-
-<div class="col-9">
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model[0].ProductID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model[0].ProductName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model[0].fCity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model[0].OutlineForSearch)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model[0].fDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model[0].fPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model[0].fType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model[0].fProductTags)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model[0].fPhoto)
-            </th>
-            <th></th>
-        </tr>
 
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fCity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OutlineForSearch)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fPrice)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fProductTags)
-                </td>
-                <td>
-                    @if (item.fPhoto != null)
-                    {
-                        <img src="data:image/jpg;base64,@Convert.ToBase64String(item.fPhoto)" alt="@item.ProductName" width="200" height="150" />
-                    }
-                </td>
-
-            </tr>
-        }
-    </table>
-    </div>
 <div class="row gap-0 column-gap-5 justify-content-center">
     <div class="col-3 border g-0">
-        
-        <div class="border mb-3">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Active</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                </li>
-            </ul>
+        <div class="filter_block ">
+            <div class="flex-column">
+                <label class="fs-4">篩選目的地</label>
+                <div class="controls-display-row search_container">
+                    <img class="search-icon-static me-3" src="~/MyCSS/icon/icons8-search-static-32.png">
+                    <img class="search-icon-gif me-3" src="~/MyCSS/icon/icons8-search.gif" width="32" height="32">
+                    <input class="search-input" type="text" placeholder="搜尋目的地">
+                </div>
+            </div>
+            @foreach (var city in Model.fCountryAndCities)
+            {
+                <div class="controls-display-row category-click">
+                    <lable class="fs-4">@Html.DisplayFor(modelItem => city.fCountry)</lable>
+                    <div class="arrow_img_center">
+                        <img id="arrow_bottom_down" src="~/MyCSS/icon/arrow_bottom_down_icon.png">
+                        <img id="arrow_top_up" src="~/MyCSS/icon/arrow_top_up_icon.png">
+                    </div>
+                </div>
+                <div class="ms-lg-4 filter-block-toggle">
+                    <ul class="list-unstyled m">
+                        @foreach (var t in city.fCitys)
+                        {
+                            <li class=" d-flex align-items-center divide-line my-w-80-percent">
+                                <img class="uncheckbox" src="~/MyCSS/icon/icons8-unchecked-32.png" />
+                                <img class="checkbox" src="~/MyCSS/icon/icons8-checkbox-32.png" />
+                                <span>@Html.DisplayFor(modelItem => t)</span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+        <div class="filter_block">
+            <label class="fs-4">所有商品類別</label>
+            @foreach (var c in Model.fCategoryAndTags)
+            {
+                <div class="controls-display-row category-click">
+                    <lable class="fs-4">@Html.DisplayFor(modelItem => c.fCategory)</lable>
+                    <div class="arrow_img_center">
+                        <img id="arrow_bottom_down" src="~/MyCSS/icon/arrow_bottom_down_icon.png">
+                        <img id="arrow_top_up" src="~/MyCSS/icon/arrow_top_up_icon.png">
+                    </div>
+                </div>
+                <div class="ms-lg-4 filter-block-toggle">
+                    <ul class="list-unstyled m">
+                        @foreach (var t in c.fTags.Distinct())
+                        {
+                            <li class=" d-flex align-items-center divide-line my-w-80-percent">
+                                <img class="uncheckbox" src="~/MyCSS/icon/icons8-unchecked-32.png" />
+                                <img class="checkbox" src="~/MyCSS/icon/icons8-checkbox-32.png" />
+                                <span>@Html.DisplayFor(modelItem => t)</span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+        <div class="filter_block">
+            <div class="controls-display-row category-click">
+                <lable class="fs-4">商品類型</lable>
+                <div class="arrow_img_center">
+                    <img id="arrow_bottom_down" src="~/MyCSS/icon/arrow_bottom_down_icon.png">
+                    <img id="arrow_top_up" src="~/MyCSS/icon/arrow_top_up_icon.png">
+                </div>
+            </div>
+            <div class="ms-lg-4 filter-block-toggle">
+                <ul class="list-unstyled m">
+                    @foreach (var type in Model.fTypes.Distinct())
+                    {
+                        <li class=" d-flex align-items-center divide-line my-w-80-percent">
+                            <img class="uncheckbox" src="~/MyCSS/icon/icons8-unchecked-32.png" />
+                            <img class="checkbox" src="~/MyCSS/icon/icons8-checkbox-32.png" />
+                            <span>@Html.DisplayFor(modelItem => type)</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+
         </div>
     </div>
-   
+
     <div class="col-7 border g-0 justify-content-end">
         <div class="row g-0">
-            @foreach (var item in Model)
+            <div class="border col-12 mb-4 ">
+                <div class="divide-line">
+                    <span class="fs-3 fw-bolder me-2">504</span><span class="fs-5 my-text-primary">項體驗行程</span>
+                </div>
+                <div class="sort my-text-secondary d-flex align-items-center">
+                    <span class="fs-6 fw-bolder my-text-primary">排序 : </span>
+                    <span class="fs-6">
+                        |
+                        <a class="sort-a my-text-secondary fw-bolder">熱門程度</a>
+                    </span>
+                    <span class="fs-6">
+                        |
+                        <a class="sort-a my-text-secondary fw-bolder">用戶評價</a>
+                    </span>
+                    <span class="fs-6">
+                        |
+                        <a class="sort-a my-text-secondary fw-bolder">價格排序(低到高)</a>
+                    </span>
+                </div>
+            </div>
+            @foreach (var item in Model.fFilterProducts)
             {
                 <input type="hidden" value="@Html.DisplayFor(modelItem => item.fProductTags)" />
 
@@ -119,7 +127,7 @@
                 {
                     salesCount = $"{item.fOrederCount} 個已訂購";
                 }
-                <div class="card mb-3 col-12">
+                <div class="card mb-3 col-12 ">
                     <div class="row g-0">
                         <div class="col-md-4">
                             <img src="data:image/jpg;base64,@Convert.ToBase64String(item.fPhoto)" class="img-fluid rounded-start" alt="@item.ProductName">
@@ -154,6 +162,7 @@
 
 
 
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/MyCSS/search_jq.js"></script>

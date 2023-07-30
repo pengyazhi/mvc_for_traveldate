@@ -24,6 +24,7 @@
     <Property Name="ProductID" Type="Int32" />
     <NavigationProperty Name="Member" Relationship="Self.FK_CommentList_Member" FromRole="CommentList" ToRole="Member" />
     <NavigationProperty Name="ProductList" Relationship="Self.FK_CommentList_ProductList" FromRole="CommentList" ToRole="ProductList" />
+    <NavigationProperty Name="CommentPhotoList" Relationship="TraveldateModel.FK_CommentPhotoList_CommentList" FromRole="CommentList" ToRole="CommentPhotoList" />
   </EntityType>
   <EntityType Name="CommentPhotoList">
     <Key>
@@ -32,6 +33,7 @@
     <Property Name="CommentPhotoListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CommentID" Type="Int32" />
     <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="CommentList" Relationship="TraveldateModel.FK_CommentPhotoList_CommentList" FromRole="CommentPhotoList" ToRole="CommentList" />
   </EntityType>
   <EntityType Name="Companion">
     <Key>
@@ -157,6 +159,7 @@
     <NavigationProperty Name="Favorite" Relationship="Self.FK_我的收藏_會員資料表" FromRole="Member" ToRole="Favorite" />
     <NavigationProperty Name="LevelList" Relationship="Self.FK_Member_LevelList" FromRole="Member" ToRole="LevelList" />
     <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Member" FromRole="Member" ToRole="Orders" />
+    <NavigationProperty Name="ForumList" Relationship="TraveldateModel.FK_ForumList_Member" FromRole="Member" ToRole="ForumList" />
   </EntityType>
   <EntityType Name="OrderDetails">
     <Key>
@@ -304,6 +307,7 @@
     <NavigationProperty Name="OrderDetails" Relationship="Self.FK_會員訂單清單_出團" FromRole="Trip" ToRole="OrderDetails" />
     <NavigationProperty Name="ProductList" Relationship="Self.FK_Trip_ProductList" FromRole="Trip" ToRole="ProductList" />
     <NavigationProperty Name="TripDetail" Relationship="Self.FK_TripDetail_Trip" FromRole="Trip" ToRole="TripDetail" />
+    <NavigationProperty Name="ScheduleList" Relationship="TraveldateModel.FK_ScheduleList_Trip" FromRole="Trip" ToRole="ScheduleList" />
   </EntityType>
   <EntityType Name="TripDetail">
     <Key>
@@ -819,5 +823,142 @@
       <End Role="Trip" EntitySet="Trip" />
       <End Role="TripDetail" EntitySet="TripDetail" />
     </AssociationSet>
+    <AssociationSet Name="FK_CommentPhotoList_CommentList" Association="TraveldateModel.FK_CommentPhotoList_CommentList">
+      <End Role="CommentList" EntitySet="CommentList" />
+      <End Role="CommentPhotoList" EntitySet="CommentPhotoList" />
+    </AssociationSet>
+    <EntitySet Name="ForumList" EntityType="TraveldateModel.ForumList" />
+    <EntitySet Name="ReplyList" EntityType="TraveldateModel.ReplyList" />
+    <EntitySet Name="ScheduleList" EntityType="TraveldateModel.ScheduleList" />
+    <AssociationSet Name="FK_ForumList_Member" Association="TraveldateModel.FK_ForumList_Member">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="ForumList" EntitySet="ForumList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReplyList_ForumList" Association="TraveldateModel.FK_ReplyList_ForumList">
+      <End Role="ForumList" EntitySet="ForumList" />
+      <End Role="ReplyList" EntitySet="ReplyList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScheduleList_ForumList" Association="TraveldateModel.FK_ScheduleList_ForumList">
+      <End Role="ForumList" EntitySet="ForumList" />
+      <End Role="ScheduleList" EntitySet="ScheduleList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReplyList_ReplyList" Association="TraveldateModel.FK_ReplyList_ReplyList">
+      <End Role="ReplyList" EntitySet="ReplyList" />
+      <End Role="ReplyList1" EntitySet="ReplyList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScheduleList_Trip" Association="TraveldateModel.FK_ScheduleList_Trip">
+      <End Role="Trip" EntitySet="Trip" />
+      <End Role="ScheduleList" EntitySet="ScheduleList" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_CommentPhotoList_CommentList">
+    <End Type="TraveldateModel.CommentList" Role="CommentList" Multiplicity="0..1" />
+    <End Type="TraveldateModel.CommentPhotoList" Role="CommentPhotoList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CommentList">
+        <PropertyRef Name="CommentID" />
+      </Principal>
+      <Dependent Role="CommentPhotoList">
+        <PropertyRef Name="CommentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ForumList">
+    <Key>
+      <PropertyRef Name="ForumListID" />
+    </Key>
+    <Property Name="ForumListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberID" Type="Int32" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="Content" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ReleaseDatetime" Type="DateTime" Precision="3" />
+    <Property Name="Likes" Type="Int32" />
+    <Property Name="Watches" Type="Int32" />
+    <NavigationProperty Name="Member" Relationship="TraveldateModel.FK_ForumList_Member" FromRole="ForumList" ToRole="Member" />
+    <NavigationProperty Name="ReplyList" Relationship="TraveldateModel.FK_ReplyList_ForumList" FromRole="ForumList" ToRole="ReplyList" />
+    <NavigationProperty Name="ScheduleList" Relationship="TraveldateModel.FK_ScheduleList_ForumList" FromRole="ForumList" ToRole="ScheduleList" />
+  </EntityType>
+  <EntityType Name="ReplyList">
+    <Key>
+      <PropertyRef Name="ReplyID" />
+    </Key>
+    <Property Name="ReplyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ForumListID" Type="Int32" />
+    <Property Name="ReplyToID" Type="Int32" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ForumList" Relationship="TraveldateModel.FK_ReplyList_ForumList" FromRole="ReplyList" ToRole="ForumList" />
+    <NavigationProperty Name="ReplyList1" Relationship="TraveldateModel.FK_ReplyList_ReplyList" FromRole="ReplyList" ToRole="ReplyList1" />
+    <NavigationProperty Name="ReplyList2" Relationship="TraveldateModel.FK_ReplyList_ReplyList" FromRole="ReplyList1" ToRole="ReplyList" />
+  </EntityType>
+  <EntityType Name="ScheduleList">
+    <Key>
+      <PropertyRef Name="ScheduleID" />
+    </Key>
+    <Property Name="ScheduleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ForumListID" Type="Int32" />
+    <Property Name="TripID" Type="Int32" />
+    <NavigationProperty Name="ForumList" Relationship="TraveldateModel.FK_ScheduleList_ForumList" FromRole="ScheduleList" ToRole="ForumList" />
+    <NavigationProperty Name="Trip" Relationship="TraveldateModel.FK_ScheduleList_Trip" FromRole="ScheduleList" ToRole="Trip" />
+  </EntityType>
+  <Association Name="FK_ForumList_Member">
+    <End Type="TraveldateModel.Member" Role="Member" Multiplicity="0..1" />
+    <End Type="TraveldateModel.ForumList" Role="ForumList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="MemberID" />
+      </Principal>
+      <Dependent Role="ForumList">
+        <PropertyRef Name="MemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReplyList_ForumList">
+    <End Type="TraveldateModel.ForumList" Role="ForumList" Multiplicity="0..1" />
+    <End Type="TraveldateModel.ReplyList" Role="ReplyList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForumList">
+        <PropertyRef Name="ForumListID" />
+      </Principal>
+      <Dependent Role="ReplyList">
+        <PropertyRef Name="ForumListID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScheduleList_ForumList">
+    <End Type="TraveldateModel.ForumList" Role="ForumList" Multiplicity="0..1" />
+    <End Type="TraveldateModel.ScheduleList" Role="ScheduleList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForumList">
+        <PropertyRef Name="ForumListID" />
+      </Principal>
+      <Dependent Role="ScheduleList">
+        <PropertyRef Name="ForumListID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReplyList_ReplyList">
+    <End Type="TraveldateModel.ReplyList" Role="ReplyList" Multiplicity="0..1" />
+    <End Type="TraveldateModel.ReplyList" Role="ReplyList1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReplyList">
+        <PropertyRef Name="ReplyID" />
+      </Principal>
+      <Dependent Role="ReplyList1">
+        <PropertyRef Name="ReplyToID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScheduleList_Trip">
+    <End Type="TraveldateModel.Trip" Role="Trip" Multiplicity="0..1" />
+    <End Type="TraveldateModel.ScheduleList" Role="ScheduleList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trip">
+        <PropertyRef Name="TripID" />
+      </Principal>
+      <Dependent Role="ScheduleList">
+        <PropertyRef Name="TripID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

@@ -22,6 +22,7 @@ namespace prjTravelDateT1
             this.Coupon = new HashSet<Coupon>();
             this.Favorite = new HashSet<Favorite>();
             this.Orders = new HashSet<Orders>();
+            this.ForumList = new HashSet<ForumList>();
         }
     
         public int MemberID { get; set; }
@@ -51,5 +52,7 @@ namespace prjTravelDateT1
         public virtual LevelList LevelList { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ForumList> ForumList { get; set; }
     }
 }

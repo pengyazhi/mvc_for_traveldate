@@ -60,6 +60,15 @@
         <AssociationConnector Association="TraveldateModel.FK_TripDetail_ProductPhotoList" ManuallyRouted="false" />
         <AssociationConnector Association="TraveldateModel.FK_ProductTagList_ProductTagDetails" ManuallyRouted="false" />
         <AssociationConnector Association="TraveldateModel.FK_TripDetail_Trip" ManuallyRouted="false" />
+        <AssociationConnector Association="TraveldateModel.FK_CommentPhotoList_CommentList" />
+        <EntityTypeShape EntityType="TraveldateModel.ForumList" Width="1.5" PointX="5.25" PointY="24.625" />
+        <EntityTypeShape EntityType="TraveldateModel.ReplyList" Width="1.5" PointX="7.5" PointY="27.625" />
+        <EntityTypeShape EntityType="TraveldateModel.ScheduleList" Width="1.5" PointX="8.5" PointY="21.25" />
+        <AssociationConnector Association="TraveldateModel.FK_ForumList_Member" />
+        <AssociationConnector Association="TraveldateModel.FK_ReplyList_ForumList" />
+        <AssociationConnector Association="TraveldateModel.FK_ScheduleList_ForumList" />
+        <AssociationConnector Association="TraveldateModel.FK_ReplyList_ReplyList" />
+        <AssociationConnector Association="TraveldateModel.FK_ScheduleList_Trip" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

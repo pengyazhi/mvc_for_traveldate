@@ -12,12 +12,13 @@ namespace prjTravelDateT1
     using System;
     using System.Collections.Generic;
     
-    public partial class CommentPhotoList
+    public partial class ScheduleList
     {
-        public int CommentPhotoListID { get; set; }
-        public Nullable<int> CommentID { get; set; }
-        public byte[] Photo { get; set; }
+        public int ScheduleID { get; set; }
+        public Nullable<int> ForumListID { get; set; }
+        public Nullable<int> TripID { get; set; }
     
-        public virtual CommentList CommentList { get; set; }
+        public virtual ForumList ForumList { get; set; }
+        public virtual Trip Trip { get; set; }
     }
 }

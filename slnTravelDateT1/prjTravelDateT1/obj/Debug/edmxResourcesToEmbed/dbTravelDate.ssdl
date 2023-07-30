@@ -117,6 +117,19 @@
     <Property Name="MemberID" Type="int" Nullable="false" />
     <Property Name="ProductID" Type="int" />
   </EntityType>
+  <EntityType Name="ForumList">
+    <Key>
+      <PropertyRef Name="ForumListID" />
+    </Key>
+    <Property Name="ForumListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemberID" Type="int" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="Content" Type="varbinary(max)" />
+    <Property Name="ReleaseDatetime" Type="datetime" />
+    <Property Name="Likes" Type="int" />
+    <Property Name="Watches" Type="int" />
+  </EntityType>
   <EntityType Name="LevelList">
     <Key>
       <PropertyRef Name="LevelID" />
@@ -239,6 +252,23 @@
     <Property Name="ProductTypeID" Type="int" Nullable="false" />
     <Property Name="ProductType" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="ReplyList">
+    <Key>
+      <PropertyRef Name="ReplyID" />
+    </Key>
+    <Property Name="ReplyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ForumListID" Type="int" />
+    <Property Name="ReplyToID" Type="int" />
+    <Property Name="Content" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="ScheduleList">
+    <Key>
+      <PropertyRef Name="ScheduleID" />
+    </Key>
+    <Property Name="ScheduleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ForumListID" Type="int" />
+    <Property Name="TripID" Type="int" />
+  </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -308,6 +338,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_CommentPhotoList_CommentList">
+    <End Role="CommentList" Type="Self.CommentList" Multiplicity="0..1" />
+    <End Role="CommentPhotoList" Type="Self.CommentPhotoList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CommentList">
+        <PropertyRef Name="CommentID" />
+      </Principal>
+      <Dependent Role="CommentPhotoList">
+        <PropertyRef Name="CommentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Companion_Member">
     <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
     <End Role="Companion" Type="Self.Companion" Multiplicity="*" />
@@ -365,6 +407,18 @@
       </Principal>
       <Dependent Role="Favorite">
         <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ForumList_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+    <End Role="ForumList" Type="Self.ForumList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="MemberID" />
+      </Principal>
+      <Dependent Role="ForumList">
+        <PropertyRef Name="MemberID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -512,6 +566,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ReplyList_ForumList">
+    <End Role="ForumList" Type="Self.ForumList" Multiplicity="0..1" />
+    <End Role="ReplyList" Type="Self.ReplyList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForumList">
+        <PropertyRef Name="ForumListID" />
+      </Principal>
+      <Dependent Role="ReplyList">
+        <PropertyRef Name="ForumListID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReplyList_ReplyList">
+    <End Role="ReplyList" Type="Self.ReplyList" Multiplicity="0..1" />
+    <End Role="ReplyList1" Type="Self.ReplyList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReplyList">
+        <PropertyRef Name="ReplyID" />
+      </Principal>
+      <Dependent Role="ReplyList1">
+        <PropertyRef Name="ReplyToID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScheduleList_ForumList">
+    <End Role="ForumList" Type="Self.ForumList" Multiplicity="0..1" />
+    <End Role="ScheduleList" Type="Self.ScheduleList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ForumList">
+        <PropertyRef Name="ForumListID" />
+      </Principal>
+      <Dependent Role="ScheduleList">
+        <PropertyRef Name="ForumListID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScheduleList_Trip">
+    <End Role="Trip" Type="Self.Trip" Multiplicity="0..1" />
+    <End Role="ScheduleList" Type="Self.ScheduleList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trip">
+        <PropertyRef Name="TripID" />
+      </Principal>
+      <Dependent Role="ScheduleList">
+        <PropertyRef Name="TripID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Trip_ProductList">
     <End Role="ProductList" Type="Self.ProductList" Multiplicity="1" />
     <End Role="Trip" Type="Self.Trip" Multiplicity="*" />
@@ -631,6 +733,7 @@
     <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CouponList" EntityType="Self.CouponList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Favorite" EntityType="Self.Favorite" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ForumList" EntityType="Self.ForumList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LevelList" EntityType="Self.LevelList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
@@ -643,6 +746,8 @@
     <EntitySet Name="ProductTagDetails" EntityType="Self.ProductTagDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductTagList" EntityType="Self.ProductTagList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductTypeList" EntityType="Self.ProductTypeList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReplyList" EntityType="Self.ReplyList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ScheduleList" EntityType="Self.ScheduleList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Trip" EntityType="Self.Trip" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TripDetail" EntityType="Self.TripDetail" Schema="dbo" store:Type="Tables" />
@@ -668,6 +773,10 @@
       <End Role="ProductList" EntitySet="ProductList" />
       <End Role="CommentList" EntitySet="CommentList" />
     </AssociationSet>
+    <AssociationSet Name="FK_CommentPhotoList_CommentList" Association="Self.FK_CommentPhotoList_CommentList">
+      <End Role="CommentList" EntitySet="CommentList" />
+      <End Role="CommentPhotoList" EntitySet="CommentPhotoList" />
+    </AssociationSet>
     <AssociationSet Name="FK_Companion_Member" Association="Self.FK_Companion_Member">
       <End Role="Member" EntitySet="Member" />
       <End Role="Companion" EntitySet="Companion" />
@@ -687,6 +796,10 @@
     <AssociationSet Name="FK_Favorite_ProductList" Association="Self.FK_Favorite_ProductList">
       <End Role="ProductList" EntitySet="ProductList" />
       <End Role="Favorite" EntitySet="Favorite" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ForumList_Member" Association="Self.FK_ForumList_Member">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="ForumList" EntitySet="ForumList" />
     </AssociationSet>
     <AssociationSet Name="FK_Member_CityList" Association="Self.FK_Member_CityList">
       <End Role="CityList" EntitySet="CityList" />
@@ -735,6 +848,22 @@
     <AssociationSet Name="FK_ProductTagList_ProductTagDetails" Association="Self.FK_ProductTagList_ProductTagDetails">
       <End Role="ProductTagDetails" EntitySet="ProductTagDetails" />
       <End Role="ProductTagList" EntitySet="ProductTagList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReplyList_ForumList" Association="Self.FK_ReplyList_ForumList">
+      <End Role="ForumList" EntitySet="ForumList" />
+      <End Role="ReplyList" EntitySet="ReplyList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReplyList_ReplyList" Association="Self.FK_ReplyList_ReplyList">
+      <End Role="ReplyList" EntitySet="ReplyList" />
+      <End Role="ReplyList1" EntitySet="ReplyList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScheduleList_ForumList" Association="Self.FK_ScheduleList_ForumList">
+      <End Role="ForumList" EntitySet="ForumList" />
+      <End Role="ScheduleList" EntitySet="ScheduleList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScheduleList_Trip" Association="Self.FK_ScheduleList_Trip">
+      <End Role="Trip" EntitySet="Trip" />
+      <End Role="ScheduleList" EntitySet="ScheduleList" />
     </AssociationSet>
     <AssociationSet Name="FK_Trip_ProductList" Association="Self.FK_Trip_ProductList">
       <End Role="ProductList" EntitySet="ProductList" />

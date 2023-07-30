@@ -124,6 +124,13 @@
       <LastGenOutput>dbTravelDate.cs</LastGenOutput>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="MyCSS\icon\icons8-checkbox-32.png" />
+    <Content Include="MyCSS\icon\icons8-person-100.png" />
+    <Content Include="MyCSS\icon\icons8-person-female-100.png" />
+    <Content Include="MyCSS\icon\icons8-search-static-32.png" />
+    <Content Include="MyCSS\icon\icons8-search.gif" />
+    <Content Include="MyCSS\icon\icons8-unchecked-32.png" />
+    <Content Include="MyCSS\search.css" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -141,17 +148,17 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="TestCss\icon\arrow_bottom_down_icon.png" />
-    <Content Include="TestCss\icon\arrow_top_up_icon.png" />
-    <Content Include="TestCss\icon\checkbox.png" />
-    <Content Include="TestCss\icon\icon_for_search_container.png" />
-    <Content Include="TestCss\icon\search.png" />
-    <Content Include="TestCss\icon\uncheckbox.png" />
-    <Content Include="TestCss\search_common.css" />
-    <Content Include="TestCss\search_container.css" />
-    <Content Include="TestCss\search_controls.css" />
-    <Content Include="TestCss\search_drop_down_list.js" />
-    <Content Include="TestCss\search_jq.js" />
+    <Content Include="MyCSS\icon\arrow_bottom_down_icon.png" />
+    <Content Include="MyCSS\icon\arrow_top_up_icon.png" />
+    <Content Include="MyCSS\icon\checkbox.png" />
+    <Content Include="MyCSS\icon\icon_for_search_container.png" />
+    <Content Include="MyCSS\icon\search.png" />
+    <Content Include="MyCSS\icon\uncheckbox.png" />
+    <Content Include="MyCSS\search_common.css" />
+    <Content Include="MyCSS\search_container.css" />
+    <Content Include="MyCSS\search_controls.css" />
+    <Content Include="MyCSS\search_drop_down_list.js" />
+    <Content Include="MyCSS\search_jq.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +181,7 @@
     <Compile Include="Company.cs">
       <DependentUpon>dbTravelDate.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="CountryList.cs">
       <DependentUpon>dbTravelDate.tt</DependentUpon>
@@ -205,6 +213,9 @@
     <Compile Include="Favorite.cs">
       <DependentUpon>dbTravelDate.tt</DependentUpon>
     </Compile>
+    <Compile Include="ForumList.cs">
+      <DependentUpon>dbTravelDate.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -214,8 +225,10 @@
     <Compile Include="Member.cs">
       <DependentUpon>dbTravelDate.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CCategoryAndTags.cs" />
     <Compile Include="Models\CFilteredProduct.cs" />
     <Compile Include="Models\CFilteredProductFactory.cs" />
+    <Compile Include="Models\CCountryAndCity.cs" />
     <Compile Include="OrderDetails.cs">
       <DependentUpon>dbTravelDate.tt</DependentUpon>
     </Compile>
@@ -247,6 +260,12 @@
       <DependentUpon>dbTravelDate.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReplyList.cs">
+      <DependentUpon>dbTravelDate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScheduleList.cs">
+      <DependentUpon>dbTravelDate.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>dbTravelDate.tt</DependentUpon>
     </Compile>
@@ -287,7 +306,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Search\SearchList.cshtml" />
-    <Content Include="Views\Search\Test.cshtml" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.esm.js.map" />
@@ -296,6 +314,7 @@
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Views\Forum\Forum.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

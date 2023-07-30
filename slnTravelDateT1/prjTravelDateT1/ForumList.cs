@@ -12,30 +12,27 @@ namespace prjTravelDateT1
     using System;
     using System.Collections.Generic;
     
-    public partial class Trip
+    public partial class ForumList
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Trip()
+        public ForumList()
         {
-            this.OrderDetails = new HashSet<OrderDetails>();
-            this.TripDetail = new HashSet<TripDetail>();
+            this.ReplyList = new HashSet<ReplyList>();
             this.ScheduleList = new HashSet<ScheduleList>();
         }
     
-        public int TripID { get; set; }
-        public int ProductID { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<decimal> UnitPrice { get; set; }
-        public Nullable<int> MinNum { get; set; }
-        public Nullable<int> MaxNum { get; set; }
-        public Nullable<decimal> Discount { get; set; }
-        public Nullable<System.DateTime> DiscountExpirationDate { get; set; }
+        public int ForumListID { get; set; }
+        public Nullable<int> MemberID { get; set; }
+        public string Title { get; set; }
+        public Nullable<System.DateTime> DueDate { get; set; }
+        public byte[] Content { get; set; }
+        public Nullable<System.DateTime> ReleaseDatetime { get; set; }
+        public Nullable<int> Likes { get; set; }
+        public Nullable<int> Watches { get; set; }
     
+        public virtual Member Member { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
-        public virtual ProductList ProductList { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TripDetail> TripDetail { get; set; }
+        public virtual ICollection<ReplyList> ReplyList { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ScheduleList> ScheduleList { get; set; }
     }

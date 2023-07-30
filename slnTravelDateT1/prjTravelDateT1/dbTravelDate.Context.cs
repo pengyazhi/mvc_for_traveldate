@@ -51,5 +51,8 @@ namespace prjTravelDateT1
         public virtual DbSet<Trip> Trip { get; set; }
         public virtual DbSet<TripDetail> TripDetail { get; set; }
         public virtual DbSet<Employees> Employees { get; set; }
+        public virtual DbSet<ForumList> ForumList { get; set; }
+        public virtual DbSet<ReplyList> ReplyList { get; set; }
+        public virtual DbSet<ScheduleList> ScheduleList { get; set; }
     }
 }

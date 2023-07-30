@@ -1,4 +1,5 @@
 ﻿using prjTravelDateT1.Models;
+using prjTravelDateT1.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +13,19 @@ namespace prjTravelDateT1.Controllers
         // GET: Search
         public ActionResult SearchList()
         {
+            
             CFilteredProductFactory products = new CFilteredProductFactory();
-            List<CFilteredProduct> datas = products.qureyFilterProductsInfo();
-            //List<CCategory> datas1 = products.qureyFilterProductsCategory();
-            return View(datas);
+            CSearchListViewModel vm = new CSearchListViewModel();
+            //商品cards
+            vm.fFilterProducts = products.qureyFilterProductsInfo(); ;
+            //商品類別&標籤,左邊篩選列
+            vm.fCategoryAndTags = products.qureyFilterCategories();
+            //商品國家&縣市,左邊篩選列
+            vm.fCountryAndCities = products.qureyFilterCountry(); 
+            //商品類型,左邊篩選列
+            vm.fTypes = products.qureyFilterTypes();
+            return View(vm);
         }
-        public ActionResult Test() {
-            CFilteredProductFactory products = new CFilteredProductFactory();
-            List<CFilteredProduct> datas = products.qureyFilterProductsInfo();
-            return View(datas);
-        }
+        
     }
 }

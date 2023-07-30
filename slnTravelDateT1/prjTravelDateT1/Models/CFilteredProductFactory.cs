@@ -44,12 +44,12 @@ namespace prjTravelDateT1.Models
                 x.ProductID = t.商品ID;
                 x.ProductName = t.名稱.FirstOrDefault();
                 x.OutlineForSearch = t.商品敘述.FirstOrDefault();
-                if(t.城市.FirstOrDefault().Trim().Substring(t.城市.FirstOrDefault().Length-1,1) == "縣" 
+                if (t.城市.FirstOrDefault().Trim().Substring(t.城市.FirstOrDefault().Length - 1, 1) == "縣"
                     || t.城市.FirstOrDefault().Trim().Substring(t.城市.FirstOrDefault().Length - 1, 1) == "市")
                 {
-                    x.fCity = t.城市.FirstOrDefault().Substring(0, t.城市.FirstOrDefault().Length-1);
+                    x.fCity = t.城市.FirstOrDefault().Substring(0, t.城市.FirstOrDefault().Length - 1);
                 }
-                
+
                 x.fDate = t.日期.Value.ToString("yyyy/MM/dd");
                 x.fPrice = (int)t.價格;
                 x.fType = t.類型.FirstOrDefault();
@@ -57,10 +57,10 @@ namespace prjTravelDateT1.Models
                 var datas_productTagsList = db.ProductTagList.AsEnumerable()
                     .Where(n => n.ProductID == t.商品ID /*&& n.ProductTagDetailsID == n.ProductTagDetails.ProductTagDetailsID*/)
                     .Select(n => n.ProductTagDetails.ProductTagDetailsName);
-                
-                foreach(var tag in datas_productTagsList)
+
+                foreach (var tag in datas_productTagsList)
                 {
-                    if(!x.fProductTags.Contains(tag))
+                    if (!x.fProductTags.Contains(tag))
                         x.fProductTags.Add(tag);
                 }
                 //照片
@@ -70,13 +70,63 @@ namespace prjTravelDateT1.Models
                 var datas_commentList = db.CommentList.Where(c => c.ProductID == t.商品ID).Select(c => c.CommentScore);
                 x.fCommentAvgScore = datas_commentList.Average();
                 x.fCommentCount = datas_commentList.Count();
-                x.strComment = datas_commentList.Any()?$"{datas_commentList.Average():0.0} ({datas_commentList.Count()})":"No comment";
+                x.strComment = datas_commentList.Any() ? $"{datas_commentList.Average():0.0} ({datas_commentList.Count()})" : "No comment";
                 //購買次數
                 var datas_orderDetais_Count = db.OrderDetails.Where(o => o.Trip.ProductList.ProductID == t.商品ID).Select(o => o.Quantity).Sum();
                 x.fOrederCount = datas_orderDetais_Count.HasValue ? datas_orderDetais_Count : 0;
                 //x.fOrederCount = 29999; //要做10 K+以上
                 list.Add(x);
             }
+            return list;
+        }
+        public List<CCategoryAndTags> qureyFilterCategories()
+        {
+            List<CCategoryAndTags> list = new List<CCategoryAndTags>();
+            var data_category = db.ProductTagList.AsEnumerable()
+                .Where(c => qureyConfirmedID().Contains((int)c.ProductID))
+                .GroupBy(c => c.ProductTagDetails.ProductCategory.ProductCategoryName)
+                .Select(g =>
+                new
+                {
+                    分類名稱 = g.Key,
+                    分類下的標籤 = g.Select(t=>t.ProductTagDetails.ProductTagDetailsName)
+                }) ;
+            foreach(var i in data_category)
+            {
+                CCategoryAndTags x = new CCategoryAndTags();
+                x.fCategory = i.分類名稱;
+                x.fTags = i.分類下的標籤;
+                list.Add(x);
+            }
+            return list;
+        }
+        public List<CCountryAndCity> qureyFilterCountry()
+        {
+            List<CCountryAndCity> list = new List<CCountryAndCity>();
+            var data_region = db.ProductList.AsEnumerable()
+                .Where(c => qureyConfirmedID().Contains((int)c.ProductID))
+                .GroupBy(r => r.CityList.CountryList.Country)
+                .Select(g => new
+                {
+                    國家 = g.Key,
+                    縣市 = g.Select(c=>c.CityList.City)
+                });
+            foreach(var c in data_region)
+            {
+                CCountryAndCity x = new CCountryAndCity();
+                x.fCountry = c.國家;
+                x.fCitys = c.縣市;
+                list.Add(x);
+            }
+            return list;
+        }
+            public List<string> qureyFilterTypes()
+        {
+            List<string> list = new List<string>();
+            IEnumerable<string> datas_types = db.ProductList.AsEnumerable()
+                .Where(t => qureyConfirmedID().Contains((int)t.ProductID))
+                .Select(t => t.ProductTypeList.ProductType);
+            list.AddRange(datas_types);
             return list;
         }
     }

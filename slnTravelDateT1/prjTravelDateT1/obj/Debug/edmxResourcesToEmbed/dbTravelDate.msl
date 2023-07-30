@@ -297,5 +297,38 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ForumList">
+      <EntityTypeMapping TypeName="TraveldateModel.ForumList">
+        <MappingFragment StoreEntitySet="ForumList">
+          <ScalarProperty Name="Watches" ColumnName="Watches" />
+          <ScalarProperty Name="Likes" ColumnName="Likes" />
+          <ScalarProperty Name="ReleaseDatetime" ColumnName="ReleaseDatetime" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="ForumListID" ColumnName="ForumListID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReplyList">
+      <EntityTypeMapping TypeName="TraveldateModel.ReplyList">
+        <MappingFragment StoreEntitySet="ReplyList">
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="ReplyToID" ColumnName="ReplyToID" />
+          <ScalarProperty Name="ForumListID" ColumnName="ForumListID" />
+          <ScalarProperty Name="ReplyID" ColumnName="ReplyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScheduleList">
+      <EntityTypeMapping TypeName="TraveldateModel.ScheduleList">
+        <MappingFragment StoreEntitySet="ScheduleList">
+          <ScalarProperty Name="TripID" ColumnName="TripID" />
+          <ScalarProperty Name="ForumListID" ColumnName="ForumListID" />
+          <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

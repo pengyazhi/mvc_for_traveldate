@@ -12,25 +12,22 @@ namespace prjTravelDateT1
     using System;
     using System.Collections.Generic;
     
-    public partial class CommentList
+    public partial class ReplyList
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CommentList()
+        public ReplyList()
         {
-            this.CommentPhotoList = new HashSet<CommentPhotoList>();
+            this.ReplyList1 = new HashSet<ReplyList>();
         }
     
-        public int CommentID { get; set; }
-        public string Title { get; set; }
+        public int ReplyID { get; set; }
+        public Nullable<int> ForumListID { get; set; }
+        public Nullable<int> ReplyToID { get; set; }
         public string Content { get; set; }
-        public Nullable<int> CommentScore { get; set; }
-        public Nullable<int> MemberID { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<int> ProductID { get; set; }
     
-        public virtual Member Member { get; set; }
-        public virtual ProductList ProductList { get; set; }
+        public virtual ForumList ForumList { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CommentPhotoList> CommentPhotoList { get; set; }
+        public virtual ICollection<ReplyList> ReplyList1 { get; set; }
+        public virtual ReplyList ReplyList2 { get; set; }
     }
 }

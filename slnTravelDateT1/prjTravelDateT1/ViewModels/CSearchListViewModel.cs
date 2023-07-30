@@ -10,7 +10,9 @@ namespace prjTravelDateT1.ViewModels
     public class CSearchListViewModel
     {
         public List<CFilteredProduct> fFilterProducts { get; set; } = new List<CFilteredProduct>();
-        public List<ProductCategory> fCategories { get; set; } = new List<ProductCategory>();
-        public List<ProductTagDetails> fTagDetails { get; set; } = new List<ProductTagDetails>();
+        public List<CCategoryAndTags> fCategoryAndTags { get; set; } = new List<CCategoryAndTags>();
+        public List<CCountryAndCity> fCountryAndCities { get; set; } = new List<CCountryAndCity>();
+        //public List<string> fTags { get; set; } = new List<string>();
+        public List<string> fTypes { get; set; } = new List<string>();
     }
 }

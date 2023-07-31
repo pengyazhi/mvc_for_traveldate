@@ -1,5 +1,5 @@
 ﻿@using prjTravelDateT1.ViewModels;
-@model prjTravelDateT1.ViewModels.CSearchListViewModel
+@model CSearchListViewModel
 
 @{
     ViewBag.Title = "SearchList";
@@ -11,17 +11,17 @@
     <div class="col-3 border g-0">
         <div class="filter_block ">
             <div class="flex-column">
-                <label class="fs-4">篩選目的地</label>
+                <label class="fs-4 pl-2 pt-2">篩選目的地</label>
                 <div class="controls-display-row search_container">
                     <img class="search-icon-static me-3" src="~/MyCSS/icon/icons8-search-static-32.png">
                     <img class="search-icon-gif me-3" src="~/MyCSS/icon/icons8-search.gif" width="32" height="32">
                     <input class="search-input" type="text" placeholder="搜尋目的地">
                 </div>
             </div>
-            @foreach (var city in Model.fCountryAndCities)
+            @foreach (var city in Model.countryAndCities)
             {
                 <div class="controls-display-row category-click">
-                    <lable class="fs-4">@Html.DisplayFor(modelItem => city.fCountry)</lable>
+                    <lable class="fs-5">@Html.DisplayFor(modelItem => city.country)</lable>
                     <div class="arrow_img_center">
                         <img id="arrow_bottom_down" src="~/MyCSS/icon/arrow_bottom_down_icon.png">
                         <img id="arrow_top_up" src="~/MyCSS/icon/arrow_top_up_icon.png">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="ms-lg-4 filter-block-toggle">
                     <ul class="list-unstyled m">
-                        @foreach (var t in city.fCitys)
+                        @foreach (var t in city.citys)
                         {
                             <li class=" d-flex align-items-center divide-line my-w-80-percent">
                                 <img class="uncheckbox" src="~/MyCSS/icon/icons8-unchecked-32.png" />
@@ -42,11 +42,11 @@
             }
         </div>
         <div class="filter_block">
-            <label class="fs-4">所有商品類別</label>
-            @foreach (var c in Model.fCategoryAndTags)
+            <label class="fs-4 pl-2 pt-2">所有商品類別</label>
+            @foreach (var c in Model.categoryAndTags)
             {
                 <div class="controls-display-row category-click">
-                    <lable class="fs-4">@Html.DisplayFor(modelItem => c.fCategory)</lable>
+                    <lable class="fs-5">@Html.DisplayFor(modelItem => c.category)</lable>
                     <div class="arrow_img_center">
                         <img id="arrow_bottom_down" src="~/MyCSS/icon/arrow_bottom_down_icon.png">
                         <img id="arrow_top_up" src="~/MyCSS/icon/arrow_top_up_icon.png">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="ms-lg-4 filter-block-toggle">
                     <ul class="list-unstyled m">
-                        @foreach (var t in c.fTags.Distinct())
+                        @foreach (var t in c.tags.Distinct())
                         {
                             <li class=" d-flex align-items-center divide-line my-w-80-percent">
                                 <img class="uncheckbox" src="~/MyCSS/icon/icons8-unchecked-32.png" />
@@ -66,9 +66,52 @@
                 </div>
             }
         </div>
+        <div class="my-calendar filter_block pt-2 pb-2">
+            <div class="d-flex align-items-center">
+                <img class="calendar-static ms-2 me-2" src="~/MyCSS/icon/icons8-calendar-32.png" />
+                <img class="calendar-gif ms-2 me-2" src="~/MyCSS/icon/icons8-calendar.gif" width="32" height="32" />
+                <span class="fs-4">篩選日期</span>
+            </div>
+            <div class="calendar-section calendar-container">
+                <div class="row no-gutters">
+                    <div class="col-md-6">
+                        <div class="calendar calendar-first" id="calendar_first">
+                            <div class="calendar_header">
+                                <button class="switch-month switch-left">
+                                    <i class="fa fa-chevron-left"></i>
+                                </button>
+                                <h2></h2>
+                                <button class="switch-month switch-right">
+                                    <i class="fa fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            <div class="calendar_weekdays"></div>
+                            <div class="calendar_content"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="calendar calendar-second" id="calendar_second">
+                            <div class="calendar_header">
+                                <button class="switch-month switch-left">
+                                    <i class="fa fa-chevron-left"></i>
+                                </button>
+                                <h2></h2>
+                                <button class="switch-month switch-right">
+                                    <i class="fa fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            <div class="calendar_weekdays"></div>
+                            <div class="calendar_content"></div>
+                        </div>
+                    </div>
+                </div> <!-- End Row -->
+            </div> <!-- End Calendar -->
+        </div>
+
+
         <div class="filter_block">
             <div class="controls-display-row category-click">
-                <lable class="fs-4">商品類型</lable>
+                <lable class="fs-4 pl-2 pt-2">商品類型</lable>
                 <div class="arrow_img_center">
                     <img id="arrow_bottom_down" src="~/MyCSS/icon/arrow_bottom_down_icon.png">
                     <img id="arrow_top_up" src="~/MyCSS/icon/arrow_top_up_icon.png">
@@ -76,7 +119,7 @@
             </div>
             <div class="ms-lg-4 filter-block-toggle">
                 <ul class="list-unstyled m">
-                    @foreach (var type in Model.fTypes.Distinct())
+                    @foreach (var type in Model.types.Distinct())
                     {
                         <li class=" d-flex align-items-center divide-line my-w-80-percent">
                             <img class="uncheckbox" src="~/MyCSS/icon/icons8-unchecked-32.png" />
@@ -86,8 +129,6 @@
                     }
                 </ul>
             </div>
-
-
         </div>
     </div>
 
@@ -113,32 +154,32 @@
                     </span>
                 </div>
             </div>
-            @foreach (var item in Model.fFilterProducts)
+            @foreach (var item in Model.filterProducts)
             {
-                <input type="hidden" value="@Html.DisplayFor(modelItem => item.fProductTags)" />
+                <input type="hidden" value="@Html.DisplayFor(modelItem => item.productTags)" />
 
                 string salesCount = "";
-                if (item.fOrederCount > 1000)
+                if (item.orederCount > 1000)
                 {
 
-                    salesCount = $"{item.fOrederCount / 1000} K+ 個已訂購";
+                    salesCount = $"{item.orederCount / 1000} K+ 個已訂購";
                 }
                 else
                 {
-                    salesCount = $"{item.fOrederCount} 個已訂購";
+                    salesCount = $"{item.orederCount} 個已訂購";
                 }
                 <div class="card mb-3 col-12 ">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="data:image/jpg;base64,@Convert.ToBase64String(item.fPhoto)" class="img-fluid rounded-start" alt="@item.ProductName">
+                            <img src="data:image/jpg;base64,@Convert.ToBase64String(item.photo)" class="img-fluid rounded-start" alt="@item.ProductName">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.ProductName)</h5>
                                 <p class="card-text">@Html.DisplayFor(modelItem => item.OutlineForSearch) 商品列表中的outline for search</p>
                                 <p class="card-text">
-                                    <small class="text-body-secondary">@Html.DisplayFor(modelItem => item.fDate) 前</small>
-                                    <small class="text-body-secondary"> | @Html.DisplayFor(modelItem => item.fCity) </small>
+                                    <small class="text-body-secondary">@Html.DisplayFor(modelItem => item.date) 前</small>
+                                    <small class="text-body-secondary"> | @Html.DisplayFor(modelItem => item.city) </small>
                                 </p>
                                 <div class="row align-items-end">
                                     <div class="col">
@@ -148,7 +189,7 @@
                                         </p>
                                     </div>
                                     <div class="col">
-                                        <p class="card-text fs-5 fw-bolder text-end"><span>TWD </span>@Html.DisplayFor(modelItem => item.fPrice)<span class="fs-6 fw-normal">起</span></p>
+                                        <p class="card-text fs-5 fw-bolder text-end"><span>TWD </span>@Html.DisplayFor(modelItem => item.price)<span class="fs-6 fw-normal">起</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -157,12 +198,24 @@
                 </div>
             }
         </div>
+        <div class="d-flex justify-content-center">
+            <div class="col-7 d-flex justify-content-around">
+                @for (int i = 1; i < 7; i++)
+                {
+                    <input class="page-itme my-bg-secondary text-white rounded border border-secondary-subtle" type="button" value="@i " />
+                }
+            </div>
+        </div>
     </div>
 </div>
-
 
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/MyCSS/search_jq.js"></script>
+<script src="~/calendar-03/calendar-03/js/jquery.min.js"></script>
+<script src="~/calendar-03/calendar-03/js/popper.js"></script>
+<script src="~/calendar-03/calendar-03/js/bootstrap.min.js"></script>
+<script src="~/calendar-03/calendar-03/js/main.js"></script>
+

@@ -20,10 +20,18 @@
 
 #arrow_bottom_down,
 .checkbox,
-.search-icon-gif {
+.search-icon-gif,
+.calendar-container,
+.calendar-gif 
+{
     display: none;
 }
-
+.my-calendar:hover .calendar-container {
+    display: block;
+    z-index: 100;
+    width: 580px;
+    height: 200px;
+}
 .search_container {
     padding: 5px;
     margin: 5px 10px 5px 10px;
@@ -33,11 +41,13 @@
     width: 90%;
 }
 
-    .search_container:hover .search-icon-static {
+    .search_container:hover .search-icon-static,
+    .my-calendar:hover .calendar-static {
         display: none;
     }
 
-    .search_container:hover .search-icon-gif {
+    .search_container:hover .search-icon-gif,
+    .my-calendar:hover .calendar-gif {
         display: inline-block;
     }
 
@@ -54,6 +64,10 @@
 
 .my-bg-primary {
     background-color: #004B97;
+}
+
+.my-bg-secondary {
+    background-color: #88A8BC;
 }
 
 .my-img-circle {
@@ -94,3 +108,25 @@
 .my-text-secondary {
     color: #88A8BC;
 }
+
+.calendar-container {
+    position: absolute;
+    z-index: 1;
+}
+
+
+.calendar_header {
+    background-color: #155074;
+    color: #FDFDF6;
+}
+
+
+
+
+
+
+
+
+
+
+

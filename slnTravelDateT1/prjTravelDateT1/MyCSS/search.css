@@ -1,9 +1,16 @@
-﻿.filter_block {
-    display: block;
-    border: 1px black solid;
-    margin-bottom: 15px;
+﻿body {
+    background-color: #DCE5E2;
 }
-
+.filter_block {
+    display: block;
+    border: 1px #fff solid;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+.selected-block {
+    background-color: #fff;
+}
 .controls-display-row {
     display: flex;
     flex-direction: row;
@@ -11,12 +18,10 @@
 }
 
 .category-click {
-    padding-left: 15px;
+    padding: 0 0 10px 15px;
 }
 
-.arrow_img_center {
-    padding-top: 4px;
-}
+
 
 #arrow_bottom_down,
 .checkbox,
@@ -32,6 +37,7 @@
     width: 580px;
     height: 200px;
 }
+
 .search_container {
     padding: 5px;
     margin: 5px 10px 5px 10px;
@@ -39,6 +45,7 @@
     border: 1px #D0D0D0 solid;
     border-radius: 5px;
     width: 90%;
+    background-color: #fff;
 }
 
     .search_container:hover .search-icon-static,
@@ -84,21 +91,22 @@
     width: 80%;
 }
 
-.sort {
-    padding: 5px 0 10px 0;
+.sort{
+padding: 5px 0 10px 0;
 }
 
-.sort-a {
+.sort>a {
     text-decoration: none;
-}
-
-.sort-a:visited {
     color: #88A8BC;
 }
 
-.sort-a:hover {
-    color: #185ab6;
+.sort>a:visited {
+    color: #88A8BC;
 }
+
+    .sort>a:hover {
+        color: #185ab6;
+    }
 
 /*文字顏色,背景顏色*/
 .my-text-primary {
@@ -119,9 +127,28 @@
     background-color: #155074;
     color: #FDFDF6;
 }
+.uncheckbox,
+.checkbox,
+input,
+.card,
+.my-calendar,
+.category-click
+{
+    cursor: pointer;
+}
 
+.card-body{
+    height:200px;
+}
 
+.my-card-img{
+    height:200px;
+}
 
+.category-click>span
+{
+    width:80%;
+}
 
 
 

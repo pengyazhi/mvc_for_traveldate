@@ -1,0 +1,17 @@
+﻿.hover-calendar {
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+
+.my-calendar:hover .hover-calendar {
+    display: block;
+    z-index: 100;
+    width:580px;
+    height: 200px;
+}
+.calendar_header {
+    background-color: #155074;
+    color: #FDFDF6;
+}
+

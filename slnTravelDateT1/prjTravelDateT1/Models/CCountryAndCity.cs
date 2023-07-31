@@ -7,7 +7,7 @@ namespace prjTravelDateT1.Models
 {
     public class CCountryAndCity
     {
-        public string fCountry { get; set; }
-        public IEnumerable<string> fCitys { get; set; }
+        public string country { get; set; }
+        public IEnumerable<string> citys { get; set; }
     }
 }

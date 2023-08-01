@@ -3,12 +3,12 @@
     ViewBag.Title = "Forum";
 }
 
-<h2>Forum</h2>
-<div class="border">照片區</div>
+
+
+<img src="~/Images/圖片1.png " class="opacity-75" />
 <div class="row border g-0 column-gap-5 justify-content-center">
-    <div class="col-3 border">
-        
-        <div class="border p-3 mt-2 mb-2">我要發文</div>
+    <div class="col-3 border forum-block">
+        <div class="border p-3 mt-2 mb-2 ">我要發文</div>
         <div class="border p-3 mt-2 mb-2">搜尋文章
             <div class="controls-display-row search_container">
                 <img class="search-icon-static me-3" src="~/MyCSS/icon/icons8-search-static-32.png">
@@ -16,10 +16,53 @@
                 <input class="search-input" type="text" placeholder="請輸入文章標題">
             </div>
         </div>
-        <div class="border p-3 mt-2 mb-2">依地區搜尋</div>
-        <div class="border p-3 mt-2 mb-2">依標籤搜尋</div>
+        <div class="border p-3 mt-2 mb-2">
+            <div class="filter_block">
+                <label class="fs-4 pl-2 pt-2">所有目的地 </label>
+                    <div class="controls-display-row category-click">
+                        <span class="fs-5">台灣 </span>
+                        <div class="d-flex justify-content-end">
+                            <img id="arrow_bottom_down" src="~/MyCSS/icon/arrow_bottom_down_icon.png">
+                            <img id="arrow_top_up" src="~/MyCSS/icon/arrow_top_up_icon.png">
+                        </div>
+                    </div>
+                    <div class="ms-lg-4 filter-block-toggle">
+                        <ul class="list-unstyled m">
+                                <li class=" d-flex align-items-center divide-line my-w-80-percent">
+                                    <img class="uncheckbox" src="~/MyCSS/icon/icons8-unchecked-32.png" />
+                                    <img class="checkbox" src="~/MyCSS/icon/icons8-checkbox-32.png" />
+                                    <span>新北 </span>
+                                </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+        <div class="border p-3 mt-2 mb-2"><div class="filter_block">
+    <label class="fs-4 pl-2 pt-2">所有商品類別</label>
+  
+
+        <div class="controls-display-row category-click">
+            <span class="fs-5">景點門票 </span>
+            <div class="d-flex justify-content-end">
+                <img id="arrow_bottom_down" src="~/MyCSS/icon/arrow_bottom_down_icon.png">
+                <img id="arrow_top_up" src="~/MyCSS/icon/arrow_top_up_icon.png">
+            </div>
+        </div>
+        <div class="ms-lg-4 filter-block-toggle">
+            <ul class="list-unstyled m">
+               
+                    <li class=" d-flex align-items-center divide-line my-w-80-percent">
+                        <img class="uncheckbox" src="~/MyCSS/icon/icons8-unchecked-32.png" />
+                        <img class="checkbox" src="~/MyCSS/icon/icons8-checkbox-32.png" />
+                        <span>景點門票 </span>
+                    </li>
+                
+            </ul>
+        </div>
+    
+</div></div>
     </div>
-    <div class="col-7 border">
+    <div class="col-7 border  forum-block">
         <div class="border p-3 mt-2 mb-2">
             <p>精選文章</p>
             <div class="row border g-0 column-gap-5 justify-content-center pt-3 pb-3">
@@ -123,11 +166,19 @@
             </div>
         </div>
         <div class="border p-3 mt-2 mb-2">
-            <span>排序 : 依</span><span> 發文時間</span><span> | 回覆數 </span><span> | 截團日期(近到遠) </span>
+            <div class="sort d-flex align-items-center fs-6 my-text-primary pl-3">
+                <span class=" fw-bolder ">排序 :  </span>
+                <span>　</span>
+                <a href="#" class=" fw-bolder">發文時間</a>
+                <span>　|　</span>
+                <a href="#" class=" fw-bolder">回覆數</a>
+                <span>　|　</span>
+                <a href="#" class=" fw-bolder">截團日期(近到遠)</a>
+            </div>
         </div>
         @for (int i = 1; i < 6; i++)
         {
-            <div class="border d-flex row g-0 column-gap-3 p-3 mt-2 mb-2">
+            <div class="border d-flex row g-0 column-gap-2 p-3 mt-2 mb-2">
                 <div class="border col-2">商品快照</div>
                 <div class="border col-5">
                     <p>文章標題 @i</p>
@@ -139,11 +190,12 @@
                 <div class="border col-2">文章照片</div>
             </div>
         }
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center bg-transparent border-0">
         <div class="col-7 d-flex justify-content-around">
             @for (int i = 1; i < 7; i++)
             {
-                <input class="page-itme my-bg-secondary text-white rounded border border-secondary-subtle" type="button" value="@i " />
+                @*<input class="page-itme my-bg-secondary text-white rounded border border-secondary-subtle" type="button" value="@i " />*@
+                <button type="button" class="btn btn-outline-secondary"> @i </button>
             }
         </div>
     </div>
@@ -152,4 +204,5 @@
     
 </div>
 
-
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/MyCSS/search_jq.js"></script>

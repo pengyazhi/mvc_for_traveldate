@@ -1,12 +1,15 @@
 ﻿body {
     background-color: #DCE5E2;
+    /*background-color: #fff;*/
 }
-.filter_block {
+.filter_block,
+.forum-block > div {
     display: block;
     border: 1px #fff solid;
     margin-bottom: 15px;
     border-radius: 10px;
     background-color: #fff;
+    /*background-color: #DCE5E2;*/
 }
 .selected-block {
     background-color: #fff;
@@ -149,8 +152,11 @@ input,
 {
     width:80%;
 }
-
-
+.container>img{
+    padding:0;
+    margin:0;
+    width:100%;
+}
 
 
 

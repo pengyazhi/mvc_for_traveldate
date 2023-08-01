@@ -334,3 +334,7 @@ C:\Users\User\Desktop\Repos\traveldate_mvc\mvc_for_traveldate\slnTravelDateT1\pr
 C:\Users\User\Desktop\Repos\traveldate_mvc\mvc_for_traveldate\slnTravelDateT1\prjTravelDateT1\obj\Debug\prjTravelDateT1.csproj.CopyComplete
 C:\Users\User\Desktop\Repos\traveldate_mvc\mvc_for_traveldate\slnTravelDateT1\prjTravelDateT1\obj\Debug\prjTravelDateT1.dll
 C:\Users\User\Desktop\Repos\traveldate_mvc\mvc_for_traveldate\slnTravelDateT1\prjTravelDateT1\obj\Debug\prjTravelDateT1.pdb
+C:\Users\User\Desktop\Repos\traveldate_mvc\mvc_for_traveldate\slnTravelDateT1\prjTravelDateT1\bin\PagedList.dll
+C:\Users\User\Desktop\Repos\traveldate_mvc\mvc_for_traveldate\slnTravelDateT1\prjTravelDateT1\bin\PagedList.Mvc.dll
+C:\Users\User\Desktop\Repos\traveldate_mvc\mvc_for_traveldate\slnTravelDateT1\prjTravelDateT1\bin\PagedList.xml
+C:\Users\User\Desktop\Repos\traveldate_mvc\mvc_for_traveldate\slnTravelDateT1\prjTravelDateT1\bin\PagedList.Mvc.xml

@@ -50,6 +50,12 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -126,6 +132,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="dbTravelDate.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -138,6 +145,10 @@
       <LastGenOutput>dbTravelDate.cs</LastGenOutput>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Images\DpC4rHah1.jpg" />
+    <Content Include="Images\top-test.png" />
+    <Content Include="Images\top.jpg" />
+    <Content Include="Images\圖片1.png" />
     <Content Include="MyCSS\icon\icons8-button-48.png" />
     <Content Include="MyCSS\icon\icons8-calendar-32.png" />
     <Content Include="MyCSS\icon\icons8-calendar.gif" />
@@ -147,6 +158,8 @@
     <Content Include="MyCSS\icon\icons8-search-static-32.png" />
     <Content Include="MyCSS\icon\icons8-search.gif" />
     <Content Include="MyCSS\icon\icons8-unchecked-32.png" />
+    <Content Include="MyCSS\multiRange.css" />
+    <Content Include="MyCSS\mutiRange.js" />
     <Content Include="MyCSS\search-for-calendar.css" />
     <Content Include="MyCSS\search.css" />
     <Content Include="Scripts\bootstrap.bundle.js" />

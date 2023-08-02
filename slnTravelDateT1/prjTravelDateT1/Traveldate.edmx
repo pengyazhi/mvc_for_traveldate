@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TraveldateModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TraveldateModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CityList">
           <Key>
             <PropertyRef Name="CityID" />
@@ -217,7 +217,7 @@
           <Property Name="CityID" Type="int" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="ProductTypeID" Type="int" />
-          <Property Name="ExamineStatus" Type="bit" />
+          <Property Name="StatusID" Type="int" />
           <Property Name="PlanName" Type="nvarchar" MaxLength="50" />
           <Property Name="PlanDescription" Type="nvarchar(max)" />
           <Property Name="Discontinued" Type="bit" />
@@ -273,6 +273,13 @@
           <Property Name="ScheduleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ForumListID" Type="int" />
           <Property Name="TripID" Type="int" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -523,6 +530,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductList_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="ProductList">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductPhotoList_ProductList">
           <End Role="ProductList" Type="Self.ProductList" Multiplicity="0..1" />
           <End Role="ProductPhotoList" Type="Self.ProductPhotoList" Multiplicity="*" />
@@ -753,6 +772,7 @@
           <EntitySet Name="ProductTypeList" EntityType="Self.ProductTypeList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReplyList" EntityType="Self.ReplyList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ScheduleList" EntityType="Self.ScheduleList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Trip" EntityType="Self.Trip" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TripDetail" EntityType="Self.TripDetail" Schema="dbo" store:Type="Tables" />
@@ -838,6 +858,10 @@
             <End Role="ProductTypeList" EntitySet="ProductTypeList" />
             <End Role="ProductList" EntitySet="ProductList" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductList_Status" Association="Self.FK_ProductList_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="ProductList" EntitySet="ProductList" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProductPhotoList_ProductList" Association="Self.FK_ProductPhotoList_ProductList">
             <End Role="ProductList" EntitySet="ProductList" />
             <End Role="ProductPhotoList" EntitySet="ProductPhotoList" />
@@ -907,7 +931,8 @@
             <End Role="CouponList" EntitySet="CouponList" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TraveldateModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -935,7 +960,7 @@
           <Property Name="ProductID" Type="Int32" />
           <NavigationProperty Name="Member" Relationship="Self.FK_CommentList_Member" FromRole="CommentList" ToRole="Member" />
           <NavigationProperty Name="ProductList" Relationship="Self.FK_CommentList_ProductList" FromRole="CommentList" ToRole="ProductList" />
-          <NavigationProperty Name="CommentPhotoList" Relationship="TraveldateModel.FK_CommentPhotoList_CommentList" FromRole="CommentList" ToRole="CommentPhotoList" />
+          <NavigationProperty Name="CommentPhotoList" Relationship="Self.FK_CommentPhotoList_CommentList" FromRole="CommentList" ToRole="CommentPhotoList" />
         </EntityType>
         <EntityType Name="CommentPhotoList">
           <Key>
@@ -944,7 +969,7 @@
           <Property Name="CommentPhotoListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CommentID" Type="Int32" />
           <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="CommentList" Relationship="TraveldateModel.FK_CommentPhotoList_CommentList" FromRole="CommentPhotoList" ToRole="CommentList" />
+          <NavigationProperty Name="CommentList" Relationship="Self.FK_CommentPhotoList_CommentList" FromRole="CommentPhotoList" ToRole="CommentList" />
         </EntityType>
         <EntityType Name="Companion">
           <Key>
@@ -1036,6 +1061,22 @@
           <NavigationProperty Name="ProductList" Relationship="Self.FK_Favorite_ProductList" FromRole="Favorite" ToRole="ProductList" />
           <NavigationProperty Name="Member" Relationship="Self.FK_我的收藏_會員資料表" FromRole="Favorite" ToRole="Member" />
         </EntityType>
+        <EntityType Name="ForumList">
+          <Key>
+            <PropertyRef Name="ForumListID" />
+          </Key>
+          <Property Name="ForumListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DueDate" Type="DateTime" Precision="3" />
+          <Property Name="Content" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ReleaseDatetime" Type="DateTime" Precision="3" />
+          <Property Name="Likes" Type="Int32" />
+          <Property Name="Watches" Type="Int32" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_ForumList_Member" FromRole="ForumList" ToRole="Member" />
+          <NavigationProperty Name="ReplyList" Relationship="Self.FK_ReplyList_ForumList" FromRole="ForumList" ToRole="ReplyList" />
+          <NavigationProperty Name="ScheduleList" Relationship="Self.FK_ScheduleList_ForumList" FromRole="ForumList" ToRole="ScheduleList" />
+        </EntityType>
         <EntityType Name="LevelList">
           <Key>
             <PropertyRef Name="LevelID" />
@@ -1068,9 +1109,9 @@
           <NavigationProperty Name="Companion" Relationship="Self.FK_Companion_Member" FromRole="Member" ToRole="Companion" />
           <NavigationProperty Name="Coupon" Relationship="Self.FK_會員優惠券_會員資料表" FromRole="Member" ToRole="Coupon" />
           <NavigationProperty Name="Favorite" Relationship="Self.FK_我的收藏_會員資料表" FromRole="Member" ToRole="Favorite" />
+          <NavigationProperty Name="ForumList" Relationship="Self.FK_ForumList_Member" FromRole="Member" ToRole="ForumList" />
           <NavigationProperty Name="LevelList" Relationship="Self.FK_Member_LevelList" FromRole="Member" ToRole="LevelList" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Member" FromRole="Member" ToRole="Orders" />
-          <NavigationProperty Name="ForumList" Relationship="TraveldateModel.FK_ForumList_Member" FromRole="Member" ToRole="ForumList" />
         </EntityType>
         <EntityType Name="OrderDetails">
           <Key>
@@ -1138,7 +1179,7 @@
           <Property Name="CityID" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ProductTypeID" Type="Int32" />
-          <Property Name="ExamineStatus" Type="Boolean" />
+          <Property Name="StatusID" Type="Int32" />
           <Property Name="PlanName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PlanDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Discontinued" Type="Boolean" />
@@ -1150,6 +1191,7 @@
           <NavigationProperty Name="Company" Relationship="Self.FK_公司商品清單_公司資料表1" FromRole="ProductList" ToRole="Company" />
           <NavigationProperty Name="Favorite" Relationship="Self.FK_Favorite_ProductList" FromRole="ProductList" ToRole="Favorite" />
           <NavigationProperty Name="ProductTypeList" Relationship="Self.FK_ProductList_ProductTypeList" FromRole="ProductList" ToRole="ProductTypeList" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_ProductList_Status" FromRole="ProductList" ToRole="Status" />
           <NavigationProperty Name="ProductPhotoList" Relationship="Self.FK_ProductPhotoList_ProductList" FromRole="ProductList" ToRole="ProductPhotoList" />
           <NavigationProperty Name="ProductTagList" Relationship="Self.FK_ProductTagList_ProductList" FromRole="ProductList" ToRole="ProductTagList" />
           <NavigationProperty Name="Trip" Relationship="Self.FK_Trip_ProductList" FromRole="ProductList" ToRole="Trip" />
@@ -1193,6 +1235,36 @@
           <Property Name="ProductType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProductList" Relationship="Self.FK_ProductList_ProductTypeList" FromRole="ProductTypeList" ToRole="ProductList" />
         </EntityType>
+        <EntityType Name="ReplyList">
+          <Key>
+            <PropertyRef Name="ReplyID" />
+          </Key>
+          <Property Name="ReplyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ForumListID" Type="Int32" />
+          <Property Name="ReplyToID" Type="Int32" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ForumList" Relationship="Self.FK_ReplyList_ForumList" FromRole="ReplyList" ToRole="ForumList" />
+          <NavigationProperty Name="ReplyList1" Relationship="Self.FK_ReplyList_ReplyList" FromRole="ReplyList" ToRole="ReplyList1" />
+          <NavigationProperty Name="ReplyList2" Relationship="Self.FK_ReplyList_ReplyList" FromRole="ReplyList1" ToRole="ReplyList" />
+        </EntityType>
+        <EntityType Name="ScheduleList">
+          <Key>
+            <PropertyRef Name="ScheduleID" />
+          </Key>
+          <Property Name="ScheduleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ForumListID" Type="Int32" />
+          <Property Name="TripID" Type="Int32" />
+          <NavigationProperty Name="ForumList" Relationship="Self.FK_ScheduleList_ForumList" FromRole="ScheduleList" ToRole="ForumList" />
+          <NavigationProperty Name="Trip" Relationship="Self.FK_ScheduleList_Trip" FromRole="ScheduleList" ToRole="Trip" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductList" Relationship="Self.FK_ProductList_Status" FromRole="Status" ToRole="ProductList" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -1217,8 +1289,8 @@
           <Property Name="DiscountExpirationDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.FK_會員訂單清單_出團" FromRole="Trip" ToRole="OrderDetails" />
           <NavigationProperty Name="ProductList" Relationship="Self.FK_Trip_ProductList" FromRole="Trip" ToRole="ProductList" />
+          <NavigationProperty Name="ScheduleList" Relationship="Self.FK_ScheduleList_Trip" FromRole="Trip" ToRole="ScheduleList" />
           <NavigationProperty Name="TripDetail" Relationship="Self.FK_TripDetail_Trip" FromRole="Trip" ToRole="TripDetail" />
-          <NavigationProperty Name="ScheduleList" Relationship="TraveldateModel.FK_ScheduleList_Trip" FromRole="Trip" ToRole="ScheduleList" />
         </EntityType>
         <EntityType Name="TripDetail">
           <Key>
@@ -1300,6 +1372,18 @@
             </Principal>
             <Dependent Role="CommentList">
               <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentPhotoList_CommentList">
+          <End Role="CommentList" Type="Self.CommentList" Multiplicity="0..1" />
+          <End Role="CommentPhotoList" Type="Self.CommentPhotoList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommentList">
+              <PropertyRef Name="CommentID" />
+            </Principal>
+            <Dependent Role="CommentPhotoList">
+              <PropertyRef Name="CommentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1423,6 +1507,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ForumList_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+          <End Role="ForumList" Type="Self.ForumList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="ForumList">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReplyList_ForumList">
+          <End Role="ForumList" Type="Self.ForumList" Multiplicity="0..1" />
+          <End Role="ReplyList" Type="Self.ReplyList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ForumList">
+              <PropertyRef Name="ForumListID" />
+            </Principal>
+            <Dependent Role="ReplyList">
+              <PropertyRef Name="ForumListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScheduleList_ForumList">
+          <End Role="ForumList" Type="Self.ForumList" Multiplicity="0..1" />
+          <End Role="ScheduleList" Type="Self.ScheduleList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ForumList">
+              <PropertyRef Name="ForumListID" />
+            </Principal>
+            <Dependent Role="ScheduleList">
+              <PropertyRef Name="ForumListID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Member_LevelList">
           <End Role="LevelList" Type="Self.LevelList" Multiplicity="0..1" />
           <End Role="Member" Type="Self.Member" Multiplicity="*" />
@@ -1519,6 +1639,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductList_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="ProductList" Type="Self.ProductList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="ProductList">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductPhotoList_ProductList">
           <End Role="ProductList" Type="Self.ProductList" Multiplicity="0..1" />
           <End Role="ProductPhotoList" Type="Self.ProductPhotoList" Multiplicity="*" />
@@ -1579,6 +1711,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ReplyList_ReplyList">
+          <End Role="ReplyList" Type="Self.ReplyList" Multiplicity="0..1" />
+          <End Role="ReplyList1" Type="Self.ReplyList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReplyList">
+              <PropertyRef Name="ReplyID" />
+            </Principal>
+            <Dependent Role="ReplyList1">
+              <PropertyRef Name="ReplyToID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScheduleList_Trip">
+          <End Role="Trip" Type="Self.Trip" Multiplicity="0..1" />
+          <End Role="ScheduleList" Type="Self.ScheduleList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trip">
+              <PropertyRef Name="TripID" />
+            </Principal>
+            <Dependent Role="ScheduleList">
+              <PropertyRef Name="TripID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TripDetail_Trip">
           <End Role="Trip" Type="Self.Trip" Multiplicity="0..1" />
           <End Role="TripDetail" Type="Self.TripDetail" Multiplicity="*" />
@@ -1602,6 +1758,7 @@
           <EntitySet Name="Coupon" EntityType="Self.Coupon" />
           <EntitySet Name="CouponList" EntityType="Self.CouponList" />
           <EntitySet Name="Favorite" EntityType="Self.Favorite" />
+          <EntitySet Name="ForumList" EntityType="Self.ForumList" />
           <EntitySet Name="LevelList" EntityType="Self.LevelList" />
           <EntitySet Name="Member" EntityType="Self.Member" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" />
@@ -1614,6 +1771,9 @@
           <EntitySet Name="ProductTagDetails" EntityType="Self.ProductTagDetails" />
           <EntitySet Name="ProductTagList" EntityType="Self.ProductTagList" />
           <EntitySet Name="ProductTypeList" EntityType="Self.ProductTypeList" />
+          <EntitySet Name="ReplyList" EntityType="Self.ReplyList" />
+          <EntitySet Name="ScheduleList" EntityType="Self.ScheduleList" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Trip" EntityType="Self.Trip" />
           <EntitySet Name="TripDetail" EntityType="Self.TripDetail" />
@@ -1637,6 +1797,10 @@
           <AssociationSet Name="FK_CommentList_ProductList" Association="Self.FK_CommentList_ProductList">
             <End Role="ProductList" EntitySet="ProductList" />
             <End Role="CommentList" EntitySet="CommentList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentPhotoList_CommentList" Association="Self.FK_CommentPhotoList_CommentList">
+            <End Role="CommentList" EntitySet="CommentList" />
+            <End Role="CommentPhotoList" EntitySet="CommentPhotoList" />
           </AssociationSet>
           <AssociationSet Name="FK_Companion_Member" Association="Self.FK_Companion_Member">
             <End Role="Member" EntitySet="Member" />
@@ -1678,6 +1842,18 @@
             <End Role="Member" EntitySet="Member" />
             <End Role="Favorite" EntitySet="Favorite" />
           </AssociationSet>
+          <AssociationSet Name="FK_ForumList_Member" Association="Self.FK_ForumList_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="ForumList" EntitySet="ForumList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReplyList_ForumList" Association="Self.FK_ReplyList_ForumList">
+            <End Role="ForumList" EntitySet="ForumList" />
+            <End Role="ReplyList" EntitySet="ReplyList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScheduleList_ForumList" Association="Self.FK_ScheduleList_ForumList">
+            <End Role="ForumList" EntitySet="ForumList" />
+            <End Role="ScheduleList" EntitySet="ScheduleList" />
+          </AssociationSet>
           <AssociationSet Name="FK_Member_LevelList" Association="Self.FK_Member_LevelList">
             <End Role="LevelList" EntitySet="LevelList" />
             <End Role="Member" EntitySet="Member" />
@@ -1710,6 +1886,10 @@
             <End Role="ProductTypeList" EntitySet="ProductTypeList" />
             <End Role="ProductList" EntitySet="ProductList" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductList_Status" Association="Self.FK_ProductList_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="ProductList" EntitySet="ProductList" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProductPhotoList_ProductList" Association="Self.FK_ProductPhotoList_ProductList">
             <End Role="ProductList" EntitySet="ProductList" />
             <End Role="ProductPhotoList" EntitySet="ProductPhotoList" />
@@ -1730,148 +1910,19 @@
             <End Role="ProductTagDetails" EntitySet="ProductTagDetails" />
             <End Role="ProductTagList" EntitySet="ProductTagList" />
           </AssociationSet>
+          <AssociationSet Name="FK_ReplyList_ReplyList" Association="Self.FK_ReplyList_ReplyList">
+            <End Role="ReplyList" EntitySet="ReplyList" />
+            <End Role="ReplyList1" EntitySet="ReplyList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScheduleList_Trip" Association="Self.FK_ScheduleList_Trip">
+            <End Role="Trip" EntitySet="Trip" />
+            <End Role="ScheduleList" EntitySet="ScheduleList" />
+          </AssociationSet>
           <AssociationSet Name="FK_TripDetail_Trip" Association="Self.FK_TripDetail_Trip">
             <End Role="Trip" EntitySet="Trip" />
             <End Role="TripDetail" EntitySet="TripDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK_CommentPhotoList_CommentList" Association="TraveldateModel.FK_CommentPhotoList_CommentList">
-            <End Role="CommentList" EntitySet="CommentList" />
-            <End Role="CommentPhotoList" EntitySet="CommentPhotoList" />
-          </AssociationSet>
-          <EntitySet Name="ForumList" EntityType="TraveldateModel.ForumList" />
-          <EntitySet Name="ReplyList" EntityType="TraveldateModel.ReplyList" />
-          <EntitySet Name="ScheduleList" EntityType="TraveldateModel.ScheduleList" />
-          <AssociationSet Name="FK_ForumList_Member" Association="TraveldateModel.FK_ForumList_Member">
-            <End Role="Member" EntitySet="Member" />
-            <End Role="ForumList" EntitySet="ForumList" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReplyList_ForumList" Association="TraveldateModel.FK_ReplyList_ForumList">
-            <End Role="ForumList" EntitySet="ForumList" />
-            <End Role="ReplyList" EntitySet="ReplyList" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ScheduleList_ForumList" Association="TraveldateModel.FK_ScheduleList_ForumList">
-            <End Role="ForumList" EntitySet="ForumList" />
-            <End Role="ScheduleList" EntitySet="ScheduleList" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReplyList_ReplyList" Association="TraveldateModel.FK_ReplyList_ReplyList">
-            <End Role="ReplyList" EntitySet="ReplyList" />
-            <End Role="ReplyList1" EntitySet="ReplyList" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ScheduleList_Trip" Association="TraveldateModel.FK_ScheduleList_Trip">
-            <End Role="Trip" EntitySet="Trip" />
-            <End Role="ScheduleList" EntitySet="ScheduleList" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_CommentPhotoList_CommentList">
-          <End Type="TraveldateModel.CommentList" Role="CommentList" Multiplicity="0..1" />
-          <End Type="TraveldateModel.CommentPhotoList" Role="CommentPhotoList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CommentList">
-              <PropertyRef Name="CommentID" />
-            </Principal>
-            <Dependent Role="CommentPhotoList">
-              <PropertyRef Name="CommentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="ForumList">
-          <Key>
-            <PropertyRef Name="ForumListID" />
-          </Key>
-          <Property Name="ForumListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MemberID" Type="Int32" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DueDate" Type="DateTime" Precision="3" />
-          <Property Name="Content" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="ReleaseDatetime" Type="DateTime" Precision="3" />
-          <Property Name="Likes" Type="Int32" />
-          <Property Name="Watches" Type="Int32" />
-          <NavigationProperty Name="Member" Relationship="TraveldateModel.FK_ForumList_Member" FromRole="ForumList" ToRole="Member" />
-          <NavigationProperty Name="ReplyList" Relationship="TraveldateModel.FK_ReplyList_ForumList" FromRole="ForumList" ToRole="ReplyList" />
-          <NavigationProperty Name="ScheduleList" Relationship="TraveldateModel.FK_ScheduleList_ForumList" FromRole="ForumList" ToRole="ScheduleList" />
-        </EntityType>
-        <EntityType Name="ReplyList">
-          <Key>
-            <PropertyRef Name="ReplyID" />
-          </Key>
-          <Property Name="ReplyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ForumListID" Type="Int32" />
-          <Property Name="ReplyToID" Type="Int32" />
-          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ForumList" Relationship="TraveldateModel.FK_ReplyList_ForumList" FromRole="ReplyList" ToRole="ForumList" />
-          <NavigationProperty Name="ReplyList1" Relationship="TraveldateModel.FK_ReplyList_ReplyList" FromRole="ReplyList" ToRole="ReplyList1" />
-          <NavigationProperty Name="ReplyList2" Relationship="TraveldateModel.FK_ReplyList_ReplyList" FromRole="ReplyList1" ToRole="ReplyList" />
-        </EntityType>
-        <EntityType Name="ScheduleList">
-          <Key>
-            <PropertyRef Name="ScheduleID" />
-          </Key>
-          <Property Name="ScheduleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ForumListID" Type="Int32" />
-          <Property Name="TripID" Type="Int32" />
-          <NavigationProperty Name="ForumList" Relationship="TraveldateModel.FK_ScheduleList_ForumList" FromRole="ScheduleList" ToRole="ForumList" />
-          <NavigationProperty Name="Trip" Relationship="TraveldateModel.FK_ScheduleList_Trip" FromRole="ScheduleList" ToRole="Trip" />
-        </EntityType>
-        <Association Name="FK_ForumList_Member">
-          <End Type="TraveldateModel.Member" Role="Member" Multiplicity="0..1" />
-          <End Type="TraveldateModel.ForumList" Role="ForumList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Member">
-              <PropertyRef Name="MemberID" />
-            </Principal>
-            <Dependent Role="ForumList">
-              <PropertyRef Name="MemberID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReplyList_ForumList">
-          <End Type="TraveldateModel.ForumList" Role="ForumList" Multiplicity="0..1" />
-          <End Type="TraveldateModel.ReplyList" Role="ReplyList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ForumList">
-              <PropertyRef Name="ForumListID" />
-            </Principal>
-            <Dependent Role="ReplyList">
-              <PropertyRef Name="ForumListID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ScheduleList_ForumList">
-          <End Type="TraveldateModel.ForumList" Role="ForumList" Multiplicity="0..1" />
-          <End Type="TraveldateModel.ScheduleList" Role="ScheduleList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ForumList">
-              <PropertyRef Name="ForumListID" />
-            </Principal>
-            <Dependent Role="ScheduleList">
-              <PropertyRef Name="ForumListID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReplyList_ReplyList">
-          <End Type="TraveldateModel.ReplyList" Role="ReplyList" Multiplicity="0..1" />
-          <End Type="TraveldateModel.ReplyList" Role="ReplyList1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ReplyList">
-              <PropertyRef Name="ReplyID" />
-            </Principal>
-            <Dependent Role="ReplyList1">
-              <PropertyRef Name="ReplyToID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ScheduleList_Trip">
-          <End Type="TraveldateModel.Trip" Role="Trip" Multiplicity="0..1" />
-          <End Type="TraveldateModel.ScheduleList" Role="ScheduleList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Trip">
-              <PropertyRef Name="TripID" />
-            </Principal>
-            <Dependent Role="ScheduleList">
-              <PropertyRef Name="TripID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1992,6 +2043,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ForumList">
+            <EntityTypeMapping TypeName="TraveldateModel.ForumList">
+              <MappingFragment StoreEntitySet="ForumList">
+                <ScalarProperty Name="ForumListID" ColumnName="ForumListID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="ReleaseDatetime" ColumnName="ReleaseDatetime" />
+                <ScalarProperty Name="Likes" ColumnName="Likes" />
+                <ScalarProperty Name="Watches" ColumnName="Watches" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="LevelList">
             <EntityTypeMapping TypeName="TraveldateModel.LevelList">
               <MappingFragment StoreEntitySet="LevelList">
@@ -2080,7 +2145,7 @@
                 <ScalarProperty Name="CityID" ColumnName="CityID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
-                <ScalarProperty Name="ExamineStatus" ColumnName="ExamineStatus" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
                 <ScalarProperty Name="PlanName" ColumnName="PlanName" />
                 <ScalarProperty Name="PlanDescription" ColumnName="PlanDescription" />
                 <ScalarProperty Name="Discontinued" ColumnName="Discontinued" />
@@ -2123,6 +2188,33 @@
               <MappingFragment StoreEntitySet="ProductTypeList">
                 <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
                 <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReplyList">
+            <EntityTypeMapping TypeName="TraveldateModel.ReplyList">
+              <MappingFragment StoreEntitySet="ReplyList">
+                <ScalarProperty Name="ReplyID" ColumnName="ReplyID" />
+                <ScalarProperty Name="ForumListID" ColumnName="ForumListID" />
+                <ScalarProperty Name="ReplyToID" ColumnName="ReplyToID" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScheduleList">
+            <EntityTypeMapping TypeName="TraveldateModel.ScheduleList">
+              <MappingFragment StoreEntitySet="ScheduleList">
+                <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+                <ScalarProperty Name="ForumListID" ColumnName="ForumListID" />
+                <ScalarProperty Name="TripID" ColumnName="TripID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="TraveldateModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Status1" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2171,39 +2263,6 @@
                 <ScalarProperty Name="EmployeeLevel" ColumnName="EmployeeLevel" />
                 <ScalarProperty Name="EmployeeAccount" ColumnName="EmployeeAccount" />
                 <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ForumList">
-            <EntityTypeMapping TypeName="TraveldateModel.ForumList">
-              <MappingFragment StoreEntitySet="ForumList">
-                <ScalarProperty Name="Watches" ColumnName="Watches" />
-                <ScalarProperty Name="Likes" ColumnName="Likes" />
-                <ScalarProperty Name="ReleaseDatetime" ColumnName="ReleaseDatetime" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-                <ScalarProperty Name="ForumListID" ColumnName="ForumListID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ReplyList">
-            <EntityTypeMapping TypeName="TraveldateModel.ReplyList">
-              <MappingFragment StoreEntitySet="ReplyList">
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="ReplyToID" ColumnName="ReplyToID" />
-                <ScalarProperty Name="ForumListID" ColumnName="ForumListID" />
-                <ScalarProperty Name="ReplyID" ColumnName="ReplyID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ScheduleList">
-            <EntityTypeMapping TypeName="TraveldateModel.ScheduleList">
-              <MappingFragment StoreEntitySet="ScheduleList">
-                <ScalarProperty Name="TripID" ColumnName="TripID" />
-                <ScalarProperty Name="ForumListID" ColumnName="ForumListID" />
-                <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

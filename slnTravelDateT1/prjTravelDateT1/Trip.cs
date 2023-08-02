@@ -18,8 +18,8 @@ namespace prjTravelDateT1
         public Trip()
         {
             this.OrderDetails = new HashSet<OrderDetails>();
-            this.TripDetail = new HashSet<TripDetail>();
             this.ScheduleList = new HashSet<ScheduleList>();
+            this.TripDetail = new HashSet<TripDetail>();
         }
     
         public int TripID { get; set; }
@@ -35,8 +35,8 @@ namespace prjTravelDateT1
         public virtual ICollection<OrderDetails> OrderDetails { get; set; }
         public virtual ProductList ProductList { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TripDetail> TripDetail { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ScheduleList> ScheduleList { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TripDetail> TripDetail { get; set; }
     }
 }

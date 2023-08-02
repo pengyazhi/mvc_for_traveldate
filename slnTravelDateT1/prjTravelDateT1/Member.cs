@@ -21,8 +21,8 @@ namespace prjTravelDateT1
             this.Companion = new HashSet<Companion>();
             this.Coupon = new HashSet<Coupon>();
             this.Favorite = new HashSet<Favorite>();
-            this.Orders = new HashSet<Orders>();
             this.ForumList = new HashSet<ForumList>();
+            this.Orders = new HashSet<Orders>();
         }
     
         public int MemberID { get; set; }
@@ -49,10 +49,10 @@ namespace prjTravelDateT1
         public virtual ICollection<Coupon> Coupon { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Favorite> Favorite { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ForumList> ForumList { get; set; }
         public virtual LevelList LevelList { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ForumList> ForumList { get; set; }
     }
 }

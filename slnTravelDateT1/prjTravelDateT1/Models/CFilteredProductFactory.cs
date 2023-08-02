@@ -14,7 +14,7 @@ namespace prjTravelDateT1.Models
         public List<int> qureyConfirmedID()
         {
             return db.Trip.AsEnumerable()
-                .Where(n => n.ProductList.ExamineStatus == true
+                .Where(n => n.ProductList.ProductTypeID == 1
                 && n.ProductList.Discontinued == false
                 && n.ProductID == n.ProductList.ProductID)
                 .Select(n => (int)n.ProductID).ToList();

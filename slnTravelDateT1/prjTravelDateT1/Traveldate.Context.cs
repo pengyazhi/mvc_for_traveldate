@@ -35,6 +35,7 @@ namespace prjTravelDateT1
         public virtual DbSet<Coupon> Coupon { get; set; }
         public virtual DbSet<CouponList> CouponList { get; set; }
         public virtual DbSet<Favorite> Favorite { get; set; }
+        public virtual DbSet<ForumList> ForumList { get; set; }
         public virtual DbSet<LevelList> LevelList { get; set; }
         public virtual DbSet<Member> Member { get; set; }
         public virtual DbSet<OrderDetails> OrderDetails { get; set; }
@@ -47,12 +48,12 @@ namespace prjTravelDateT1
         public virtual DbSet<ProductTagDetails> ProductTagDetails { get; set; }
         public virtual DbSet<ProductTagList> ProductTagList { get; set; }
         public virtual DbSet<ProductTypeList> ProductTypeList { get; set; }
+        public virtual DbSet<ReplyList> ReplyList { get; set; }
+        public virtual DbSet<ScheduleList> ScheduleList { get; set; }
+        public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Trip> Trip { get; set; }
         public virtual DbSet<TripDetail> TripDetail { get; set; }
         public virtual DbSet<Employees> Employees { get; set; }
-        public virtual DbSet<ForumList> ForumList { get; set; }
-        public virtual DbSet<ReplyList> ReplyList { get; set; }
-        public virtual DbSet<ScheduleList> ScheduleList { get; set; }
     }
 }

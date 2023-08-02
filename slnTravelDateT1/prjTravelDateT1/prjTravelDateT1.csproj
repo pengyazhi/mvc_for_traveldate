@@ -134,16 +134,6 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="dbTravelDate.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>dbTravelDate.Context.cs</LastGenOutput>
-      <DependentUpon>dbTravelDate.edmx</DependentUpon>
-    </Content>
-    <Content Include="dbTravelDate.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>dbTravelDate.edmx</DependentUpon>
-      <LastGenOutput>dbTravelDate.cs</LastGenOutput>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="Images\DpC4rHah1.jpg" />
     <Content Include="Images\top-test.png" />
@@ -289,133 +279,139 @@
     <Content Include="MyCSS\search_controls.css" />
     <Content Include="MyCSS\search_drop_down_list.js" />
     <Content Include="MyCSS\search_jq.js" />
+    <Content Include="Traveldate.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Traveldate.edmx</DependentUpon>
+      <LastGenOutput>Traveldate.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Traveldate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Traveldate.edmx</DependentUpon>
+      <LastGenOutput>Traveldate.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="CityList.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="CommentList.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="CommentPhotoList.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="Companion.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="CompanionList.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="Company.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="CountryList.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="Coupon.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="CouponList.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbTravelDate.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbTravelDate.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbTravelDate.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbTravelDate.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbTravelDate.edmx</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="Employees.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="Favorite.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="ForumList.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LevelList.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="Member.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CCategoryAndTags.cs" />
     <Compile Include="Models\CFilteredProductItem.cs" />
     <Compile Include="Models\CFilteredProductFactory.cs" />
     <Compile Include="Models\CCountryAndCity.cs" />
     <Compile Include="OrderDetails.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="Orders.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderStatusList.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="PaymentList.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductCategory.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductList.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductPhotoList.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductTagDetails.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductTagList.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductTypeList.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReplyList.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="ScheduleList.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Status.cs">
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Traveldate.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Traveldate.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Traveldate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Traveldate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Traveldate.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Traveldate.edmx</DependentUpon>
     </Compile>
     <Compile Include="Trip.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="TripDetail.cs">
-      <DependentUpon>dbTravelDate.tt</DependentUpon>
+      <DependentUpon>Traveldate.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CSearchListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <EntityDeploy Include="dbTravelDate.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>dbTravelDate.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="dbTravelDate.edmx.diagram">
-      <DependentUpon>dbTravelDate.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
@@ -445,6 +441,13 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Views\Forum\Forum.cshtml" />
+    <EntityDeploy Include="Traveldate.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Traveldate.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Traveldate.edmx.diagram">
+      <DependentUpon>Traveldate.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

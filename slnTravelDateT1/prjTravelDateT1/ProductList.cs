@@ -30,7 +30,7 @@ namespace prjTravelDateT1
         public Nullable<int> CityID { get; set; }
         public string Description { get; set; }
         public Nullable<int> ProductTypeID { get; set; }
-        public Nullable<bool> ExamineStatus { get; set; }
+        public Nullable<int> StatusID { get; set; }
         public string PlanName { get; set; }
         public string PlanDescription { get; set; }
         public Nullable<bool> Discontinued { get; set; }
@@ -45,6 +45,7 @@ namespace prjTravelDateT1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Favorite> Favorite { get; set; }
         public virtual ProductTypeList ProductTypeList { get; set; }
+        public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductPhotoList> ProductPhotoList { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
